@@ -1,15 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Samanth Martis!</title>
   </head>
   <body>
-	  <p>Testing</p>
+    <div id="hero">
+      <div class="subPage">
+        <span style="position: relative; color: blue; text-align: center">
+          <div
+            class="subPage"
+            style="background-color: black; color: white; height: 80vh"
+          >
+            <canvas id="canvas"></canvas>
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+            <div class="textContainer" id="welcomeContainer">
+              <span class="textSpan" id="welcomeGreeting">
+                Welcome to my humble abode...
+              </span>
+            </div>
+            <div class="textContainer" id="nameContainer">
+              <span class="textSpan" id="myNameIs">
+                My name is
+                <span id="name" class="nameMine"> Samanth </span>
+              </span>
+            </div>
+            <br />
+            <div class="textContainer">
+              <span class="textSpan" id="askMeAnything">
+                Ask me anything -&gt;
+              </span>
+            </div>
+            <div class="optionContainer">
+              <div class="option" id="option1">Cool website!</div>
+              <div class="option" id="option2">Who are you?</div>
+              <div class="option" id="option3">Tell a joke!</div>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <div id="about">
+        <span style="position: relative; color: blue; text-align: center">
+          <div
+            class="subPage"
+            style="background-color: white; color: black; height: 80vh"
+          >
+            <div class="aboutContainer">
+          <div class="aboutImageContainer" id="aboutMeImageContainer">
+            <img src="/src/assets/My_Picture.jpeg" alt="Image not found :[" />
+          </div>
+          <div class="aboutTextContainer" id="aboutMeTextContainer">
+            <span class="aboutTextSpan" id="aboutMe">
+              About Me
+            </span>
+
+            <span class="aboutTextSpan" id="aboutMeText">
+              <p>
+                I am a first year undergraduate from IITB, pursuing a BTech in
+                Aerospace!
+                <br /> I am a code enthusiast with an eye for debugging!<br/>
+                Love
+                to draw in my free time and read stories from across the
+                Internet!
+              </p>
+              <br />
+              <p>
+                You will usually find me stuck to my laptop.
+                <br /> A little more inspection and you&apos;ll catch me doing
+                one of three things:
+           
+                  <li>1. Writing code for some bizarre project</li><li> 2. Watching tutorials
+                  and/or lectures</li> <li>3. Internally dying as I document my work</li>
+  
+              </p>
+            </span>
+            <br></br>
+          </div>
+        </div>
+
+
+    </div>
+
+    <div id="likings">
+        <div class="subPage">
+         <div class="likingContainer">
+          <div class="likingTextContainer" id="likingMeTextContainer">
+            <span class="likingTextSpan" id="likingMe">
+              What I like!
+            </span>
+
+            <span class="likingTextSpan" id="likingMeText">
+              <p>
+                Hard core SCP foundation enthusiast. For those of you who know
+                what that is, let&apos;s be friends!
+                <br />
+                <br /> Music has been my medicine for a long time! You&apos;ll
+                seldom see me without headphones outisde class.
+                <br />
+                <br /> I am a code enthusiast with an eye for debugging!
+                Familiar with C++, Python, HTML, CSS, JS, React, SQL, Git, and
+                more!
+                <br />
+                Currently learning WebGL and Unity!
+                <br />
+                <br />
+                Love to draw in my free time and read stories from across the
+                Internet!
+              </p>
+              <br />
+            </span>
+            <br></br>
+          </div>
+          <div class="likingImageContainer" id="likingMeImageContainer">
+            <img src="src/assets/myPicture.jpeg" alt="Image not found :[" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div id="sliderCardsGroup"></div>
+
+    <script src="/src/FlowField.js"></script>
   </body>
 </html>
