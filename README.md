@@ -7,9 +7,9 @@
 <table align='Center'>
   <tr>
     <td><div width=50%><img src ='My_Picture.jpeg'></div></td>
-    <td width=50%><div align='center'><div><h2>More about me</h2></div><br><barnr><div>Open source supporter, Call of Duty lover and most importantly sucker for Aerospace and robotics!<br>Mostly code in js/ts and python, but I can make screen go brrrr in c++, c, c#, fortran, rust, and ofcourse...HTML<br>Curren</div><tly /dleiing more of ortv></td>
-  </tr>tly 
-</table>ran tly leks
+    <td width=50%><div align='center'><div><h2>More about me</h2></div><br><br><div>Open source supporter, Call of Duty lover and most importantly sucker for Aerospace and robotics!<br>Mostly code in js/ts and python, but I can make screen go brrrr in c++, c, c#, fortran, rust, and ofcourse...HTML<br>Currently learning more of Fortran and dabbling in a bit of computational engineering and openGL</div></td>
+  </tr>
+</table>
 
 <!--
 **Sam-MARTis/Sam-MARTis** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
