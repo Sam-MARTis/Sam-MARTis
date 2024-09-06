@@ -47,9 +47,10 @@
 
 ---
 
-### ⚡ GitHub Stats
 
-![Samanth's GitHub stats](https://github-readme-stats.vercel.app/api?username=Sam-MARTis&show_icons=true&theme=radical)
+### 🧑‍💻 Top Languages
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Sam-MARTis&layout=compact&theme=radical)
 
 ---
 
