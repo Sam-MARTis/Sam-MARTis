@@ -1,31 +1,33 @@
 # Hey there! I'm **Samanth Martis** 👋
 
-**🎓 2nd Year Undergraduate**  
+**🎓 3rd Year Undergraduate**  
 **Aerospace Engineering at IIT Bombay**
 
 ---
 
 ### 👨‍💻 About Me
+ I love reading stories and fiction. A hugeeeeeee fan of Warhammer - The Emperor Protects!
+ As I navigate the hedonic treadmill, you'll find me with a new obsession every week. From Percolation theory to Thermoacoustics to Photovoltaics. 
+ If I could describe myself in one quote, it'd be this: If everything is under control, you're going too slow.
+ I swear I'm funny, though the number of dad jokes I force upon others might cause my friends to disagree 🫀
 
-- ✍️ I love to **draw** and **write stories**. The world's a lot more fun in my head.
-- 🔐 I'm passionate about **Cybersecurity** and part of **CSeC IITB**.
-- 🧮 Linear Algebra? I can walk in Tensors, I can talk in Tensors, I can laugh in Tensors. 
-- 💻 I maintain servers from old laptops because they're **fun**. I'm also currently interested in getting them to work as central nodes for distributed computing
-- 🐧 Proud member of the **Linux gang**. From Ubuntu to Kali to, after a lot of more exploration, Mint.
-- ❤️ A huge fan of **Open Source** and hope to **contribute soon**.
 
 ---
 
 ### 🚀 Currently Working On
 
-- **CUDA**: So many projects fall into your research if you can parallelize your algorithms
-- **Computational Engineering (Continuum Mechanics)**: Learning to use high-performance computing for solid and fluid mechanics
+- **CUDA**: So many projects fall into your research if you can parallelise your algorithms. 
+- **Computational Physics**: Learning to use high-performance computing for solving physics stuff. Love it.
 - **Fluid Physics**: Pair it with CFD, and this rabbit hole will be the death of me.
 - **Julia**: Once again, GPU computing is what draws me to it. One of the few languages that runs natively on the GPU.
+- **Thermoacoustics**: Heat => Sound => Stuff => More Heat => More Sound => Boom
+- **Thermophotovoltaics**: Light + Heat => 🔋
 
 ---
 
 ### 🛠️ Skills
+I can zone out very effectively.
+I can get a lot of things done in very short period of time (though not at will 😢)
 
 **Languages**  
 ![Julia](https://img.shields.io/badge/Julia-%23A270BA.svg?style=for-the-badge&logo=julia&logoColor=white)
