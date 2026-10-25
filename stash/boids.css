@@ -1,0 +1,20 @@
+/* Archived boid CSS — add to styles.css when restoring. */
+:root {
+  --boid: 63, 107, 89;
+}
+
+[data-theme="dark"] {
+  --boid: 157, 198, 173;
+}
+
+#boids {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.7;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 96%);
+}

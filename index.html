@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Samanth Martis — Aerospace engineering, computation &amp; simulation</title>
+  <meta name="description" content="Samanth Martis is a final-year aerospace engineering undergraduate at IIT Bombay working on computational mechanics, numerical solvers and GPU simulation.">
+  <meta name="author" content="Samanth Martis">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2efe7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1310" media="(prefers-color-scheme: dark)">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Samanth Martis — Aerospace engineering, computation &amp; simulation">
+  <meta property="og:description" content="Final-year aerospace engineering undergraduate at IIT Bombay. Solvers, simulations and GPU experiments.">
+  <meta property="og:image" content="assets/media/og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Samanth Martis in front of a painted wings mural, with the words Samanth Martis and Aerospace Engineering, IIT Bombay.">
+  <meta property="og:site_name" content="Samanth Martis">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Samanth Martis — Aerospace engineering, computation &amp; simulation">
+  <meta name="twitter:description" content="Final-year aerospace engineering undergraduate at IIT Bombay. Solvers, simulations and GPU experiments.">
+  <meta name="twitter:image" content="assets/media/og.jpg">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var theme = localStorage.getItem('theme');
+        if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        root.dataset.theme = theme;
+      } catch (e) { root.dataset.theme = 'light'; }
+      try {
+        var motion = localStorage.getItem('motion');
+        if (motion) root.dataset.motion = motion;
+        else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.dataset.motion = 'paused';
+        else root.dataset.motion = 'running';
+      } catch (e) { root.dataset.motion = 'running'; }
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Samanth Martis",
+    "description": "Aerospace engineering undergraduate at IIT Bombay working on computational mechanics, numerical solvers and GPU simulation.",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Bombay" },
+    "knowsAbout": ["Computational mechanics", "Numerical methods", "GPU computing", "Continuum mechanics", "Metamaterials", "Fluid dynamics"],
+    "email": "samanthmartis@gmail.com",
+    "sameAs": ["https://github.com/Sam-MARTis", "https://www.linkedin.com/in/samanth-martis-5309ab293/"],
+    "image": "assets/media/me-wings.webp"
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <canvas id="boids" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <div class="wrap site-header__inner">
+      <a class="brand" href="#top" aria-label="Samanth Martis, back to top">
+        <span class="brand__mark" aria-hidden="true">S</span>
+        <span class="brand__name">Samanth Martis</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#work" data-nav-link>Work</a>
+        <a href="#research" data-nav-link>Research</a>
+        <a href="#about" data-nav-link>About</a>
+        <a href="#contact" data-nav-link>Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M12 2.5v2.2M12 19.3v2.2M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.4 19.6 6 18M18 6l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20.1 14.6A8.4 8.4 0 0 1 9.4 3.9 8.5 8.5 0 1 0 20.1 14.6Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <span class="scroll-progress" aria-hidden="true" data-scroll-progress></span>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="top"></div>
+
+    <!-- ============================================================
+         HERO
+    ============================================================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow hero__eyebrow"><span class="status-dot" aria-hidden="true"></span>Greetings, I am</p>
+
+          <h1 class="hero__title" id="hero-title">
+            <span>Samanth</span>
+            <em>Martis<span class="hero__dot">.</span></em>
+          </h1>
+
+          <p class="hero__lede">
+            Final-year <strong>Aerospace Engineering</strong> undergraduate at IIT Bombay,
+            with an interest in computation, physics and mechanics.
+          </p>
+          <p class="hero__sub">
+            I do a lot of things. What I love most is scientific programming:
+            writing solvers from first principles, then making them fast enough to be useful.
+          </p>
+
+          <div class="hero__actions">
+            <a class="button button--solid" href="#work">
+              Explore selected work
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2.5v10M3.8 8.4 8 12.6l4.2-4.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="text-link" href="#research">Read the research <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <ul class="hero__tags" aria-label="Areas of interest">
+            <li>Simulation</li>
+            <li>GPU computing</li>
+            <li>Continuum mechanics</li>
+          </ul>
+        </div>
+
+        <figure class="hero__figure">
+          <div class="hero__portrait">
+            <img src="assets/media/me-wings.webp" width="1121" height="842" alt="Samanth smiling in front of a painted mural of blue and orange wings." fetchpriority="high" decoding="async">
+            <span class="hero__portrait-glow" aria-hidden="true"></span>
+          </div>
+          <div class="hero__inset">
+            <img src="assets/media/me-iitb.webp" width="820" height="815" alt="Samanth in front of the IIT Bombay main gate." loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            <span>Samanth Martis</span>
+            <span>Aerospace Engineering · IIT Bombay</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap hero__foot">
+        <a class="scroll-cue" href="#approach">
+          <span>Scroll to explore</span>
+          <span class="scroll-cue__line" aria-hidden="true"></span>
+        </a>
+        <p class="hero__footnote">Portfolio · 2026</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPROACH
+    ============================================================= -->
+    <section class="section approach" id="approach" aria-labelledby="approach-title">
+      <div class="wrap">
+        <div class="section-label reveal">
+          <span class="section-label__num">01</span>
+          <span>Approach</span>
+        </div>
+
+        <div class="approach__grid">
+          <h2 class="display approach__title reveal" id="approach-title">
+            Build the model.<br>
+            <em>Then make it fast.</em>
+          </h2>
+
+          <div class="approach__body">
+            <p class="lead reveal">
+              Most of my work starts with a physical system and a blank editor:
+              a lattice of springs, a shock in a tube, a spin on a lattice, a field on an
+              unstructured mesh.
+            </p>
+            <p class="reveal">
+              I like the moment when the mathematics becomes something you can see — and
+              then fast enough that you can play with it. That usually means writing the
+              solver yourself, understanding where the cost lives, and moving it onto the GPU.
+            </p>
+          </div>
+        </div>
+
+        <dl class="facts">
+          <div class="fact reveal">
+            <dt>Now</dt>
+            <dd>Final-year B.Tech, Aerospace Engineering, IIT Bombay.</dd>
+          </div>
+          <div class="fact reveal">
+            <dt>Research</dt>
+            <dd>Tunable bistable auxetic metasurfaces, and higher-order RBF reconstruction for fluid dynamics.</dd>
+          </div>
+          <div class="fact reveal">
+            <dt>Toolbox</dt>
+            <dd>C++, CUDA, OpenCL, OpenGL, compute shaders, SFML — and a lot of first-principles maths.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WORK
+    ============================================================= -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="section-label reveal">
+            <span class="section-label__num">02</span>
+            <span>Selected work</span>
+          </div>
+          <h2 class="display section-title reveal" id="work-title">
+            Things I have made <em>move.</em>
+          </h2>
+          <p class="section-intro reveal">
+            Simulations, solvers and a few detours. Most of these began as a question
+            I wanted to watch happen.
+          </p>
+        </header>
+
+        <!-- 01 · Metasurfaces -->
+        <article class="project reveal" id="metasurfaces">
+          <div class="project__media">
+            <div class="media-pair">
+              <figure class="media media--paper">
+                <video data-ambient muted loop playsinline preload="none" poster="assets/media/rectangular-poster.webp" aria-label="Animation of a rectangular auxetic unit cell deforming under load.">
+                  <source src="assets/media/rectangular-cell.mp4" type="video/mp4">
+                </video>
+                <figcaption class="media__tag">Rectangular cell</figcaption>
+                <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/rectangular-cell.mp4" data-caption="Rectangular auxetic unit cell — lattice-spring model" aria-label="Enlarge rectangular unit cell animation">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </figure>
+
+              <figure class="media media--paper">
+                <video data-ambient muted loop playsinline preload="none" poster="assets/media/triangular-poster.webp" aria-label="Animation of a triangular auxetic unit cell deforming under load.">
+                  <source src="assets/media/triangular-cell.mp4" type="video/mp4">
+                </video>
+                <figcaption class="media__tag">Triangular cell</figcaption>
+                <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/triangular-cell.mp4" data-caption="Triangular auxetic unit cell — lattice-spring model" aria-label="Enlarge triangular unit cell animation">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </figure>
+            </div>
+            <p class="media-note"><span>LSM output</span><span>Unit-cell kinematics</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">01</p>
+            <p class="kicker">Computational mechanics · Research</p>
+            <h3>Lattice-spring metamaterials</h3>
+            <p>
+              A custom lattice-spring model, written from scratch, to simulate auxetic
+              metasurfaces. Nodes, springs and a minimal integrator — fast enough to
+              iterate on cell geometry and explore the topology space toward exotic
+              unit cells.
+            </p>
+            <p>
+              The broader aim is a class of bi- and multi-stable cells whose transitions
+              between states can be tuned on the fly, opening the door to low-powered
+              actuators and other shape-changing structures.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>Lattice-spring model</li>
+              <li>Bistability</li>
+              <li>Topology exploration</li>
+            </ul>
+            <a class="text-link" href="#auxetics">Read the research <span aria-hidden="true">↓</span></a>
+          </div>
+        </article>
+
+        <!-- 02 · Roe solver -->
+        <article class="project project--reverse reveal" id="roe">
+          <div class="project__media">
+            <figure class="media media--dark media--square">
+              <video data-ambient muted loop playsinline preload="none" poster="assets/media/detonation-poster.webp" aria-label="A detonation front developing through a two-dimensional domain, computed with Roe's approximate Riemann solver.">
+                <source src="assets/media/detonation.mp4" type="video/mp4">
+              </video>
+              <figcaption class="media__overlay">
+                <span>Roe solver</span>
+                <span>2D detonation</span>
+              </figcaption>
+              <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/detonation.mp4" data-caption="Two-dimensional detonation — Roe solver" aria-label="Enlarge detonation video">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </figure>
+            <p class="media-note"><span>Reactive flow</span><span>Roe flux · finite volume</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">02</p>
+            <p class="kicker">Numerical methods · Compressible flow</p>
+            <h3>A Roe solver for compressible flow</h3>
+            <p>
+              Implemented Roe's approximate Riemann solver for a research project in
+              compressible fluid dynamics. The work involved the characteristic
+              decomposition, the numerical flux, and the careful business of keeping a
+              finite-volume update stable around discontinuities.
+            </p>
+            <p>
+              The sequence alongside shows a detonation front developing in a
+              two-dimensional domain — a view from the solver, where the wave structure
+              unfolds over time.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>Finite volume</li>
+              <li>Riemann solvers</li>
+              <li>Detonation</li>
+              <li>Shock capturing</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 · Julia -->
+        <article class="project reveal" id="julia">
+          <div class="project__media">
+            <figure class="media media--dark media--video">
+              <video data-ambient muted loop playsinline preload="none" poster="assets/media/julia-poster.webp" aria-label="A deep zoom through a Julia set, rendered with OpenCL and displayed through OpenGL.">
+                <source src="assets/media/julia.mp4" type="video/mp4">
+              </video>
+              <figcaption class="media__overlay">
+                <span>OpenCL × OpenGL</span>
+                <span>Julia set · deep zoom</span>
+              </figcaption>
+              <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/julia.mp4" data-caption="Julia set zoom — OpenCL compute with OpenGL interop" aria-label="Enlarge Julia set animation">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </figure>
+            <p class="media-note"><span>GPU render</span><span>Real-time escape-time iteration</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">03</p>
+            <p class="kicker">GPU computing · Rendering</p>
+            <h3>Julia sets, on the GPU</h3>
+            <p>
+              An OpenCL–OpenGL interop learning project. The escape-time iteration runs on
+              the GPU and writes directly into an OpenGL texture, so the zoom stays
+              interactive while the mathematics happens per pixel.
+            </p>
+            <p>
+              It was an exercise in keeping data on the device, understanding the
+              synchronization points, and letting a few lines of complex arithmetic turn
+              into a landscape.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>OpenCL</li>
+              <li>OpenGL interop</li>
+              <li>Fractals</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 04 · Strange attractors -->
+        <article class="project project--reverse reveal" id="attractors">
+          <div class="project__media">
+            <figure class="media media--dark media--square">
+              <video data-ambient muted loop playsinline preload="none" poster="assets/media/attractors-poster.webp" aria-label="A cloud of particles tracing a strange attractor, computed by an OpenGL compute shader.">
+                <source src="assets/media/attractors.mp4" type="video/mp4">
+              </video>
+              <figcaption class="media__overlay">
+                <span>Compute shader</span>
+                <span>Particle trajectories</span>
+              </figcaption>
+              <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/attractors.mp4" data-caption="Strange attractors — OpenGL compute shader particle study" aria-label="Enlarge strange attractor animation">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </figure>
+            <p class="media-note"><span>Lorenz / Halvorsen</span><span>GPU particles</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">04</p>
+            <p class="kicker">GPU computing · Dynamical systems</p>
+            <h3>Strange attractors in compute shaders</h3>
+            <p>
+              Lorenz and Halvorsen attractors integrated by a compute shader, with a cloud
+              of particles tracing the invariant structure in real time. A study in GPU
+              parallelism, buffer ping-ponging, and letting the mathematics draw.
+            </p>
+            <p>
+              Change the camera and the same attractor reads like an entirely different
+              object: a ribbon, a shell, a knot of trajectories that never repeats.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>Compute shaders</li>
+              <li>OpenGL</li>
+              <li>Chaos</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 05 · Cavity -->
+        <article class="project reveal" id="cavity">
+          <div class="project__media">
+            <div class="figure-stack">
+              <figure class="figure-plate figure-plate--wide">
+                <button class="figure-plate__button" type="button" data-lightbox data-type="image" data-src="assets/media/cavity-psi.webp" data-caption="Stream function ψ in the x–y and ξ–η domains — Re = 100, 100 × 100 grid." aria-label="Enlarge stream function plots">
+                  <img src="assets/media/cavity-psi.webp" width="1600" height="690" alt="Two side-by-side plots of the stream function in physical and transformed coordinates, showing a recirculating cavity flow at Reynolds number 100." loading="lazy" decoding="async">
+                </button>
+                <figcaption><span>ψ field · x–y and ξ–η domains</span><span>Re = 100</span></figcaption>
+              </figure>
+              <div class="figure-plate__row">
+                <figure class="figure-plate">
+                  <button class="figure-plate__button" type="button" data-lightbox data-type="image" data-src="assets/media/cavity-velocity.webp" data-caption="Centreline velocity profiles u and v — Re = 1000, 100 × 100 grid." aria-label="Enlarge centreline velocity plot">
+                    <img src="assets/media/cavity-velocity.webp" width="837" height="887" alt="Centreline velocity profiles u and v across the cavity at Reynolds number 1000." loading="lazy" decoding="async">
+                  </button>
+                  <figcaption><span>Centreline velocities</span><span>Re = 1000</span></figcaption>
+                </figure>
+                <figure class="figure-plate figure-plate--dark">
+                  <button class="figure-plate__button" type="button" data-lightbox data-type="image" data-src="assets/media/cavity-streamlines.webp" data-caption="Streamline visualisation of the driven cavity — rendered in SFML." aria-label="Enlarge streamline visualisation">
+                    <img src="assets/media/cavity-streamlines.webp" width="715" height="589" alt="Streamline visualisation of a lid-driven cavity, with nested recirculation loops rendered in cyan and red." loading="lazy" decoding="async">
+                  </button>
+                  <figcaption><span>Streamlines</span><span>SFML render</span></figcaption>
+                </figure>
+              </div>
+            </div>
+            <p class="media-note"><span>From scratch</span><span>Vorticity–streamfunction formulation</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">05</p>
+            <p class="kicker">CFD · Course project</p>
+            <h3>Lid-driven cavity, from scratch</h3>
+            <p>
+              Simulated a driven cavity using the vorticity–streamfunction formulation as
+              part of a course project, with all computations written from scratch in C++
+              and SFML used for rendering.
+            </p>
+            <p>
+              The figures trace the solution from the ψ field to the centreline velocity
+              profiles: the quiet symmetry of the geometry, and the thin boundary layers
+              where all the work happens.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>C++</li>
+              <li>SFML</li>
+              <li>Vorticity–streamfunction</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 06 · Space debris -->
+        <article class="project project--reverse reveal" id="debris">
+          <div class="project__media">
+            <figure class="media media--dark media--square">
+              <video data-ambient muted loop playsinline preload="none" poster="assets/media/debris-poster.webp" aria-label="Animation of a large disc-shaped decelerator satellite approaching a piece of orbital debris.">
+                <source src="assets/media/debris.mp4" type="video/mp4">
+              </video>
+              <figcaption class="media__overlay">
+                <span>Orbital systems</span>
+                <span>Deflector × decelerator</span>
+              </figcaption>
+              <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/debris.mp4" data-caption="Space debris deorbiting concept — satellite constellation animation" aria-label="Enlarge space debris animation">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </figure>
+            <p class="media-note"><span>Concept study</span><span>Low Earth orbit</span></p>
+          </div>
+
+          <div class="project__copy">
+            <p class="project__index">06</p>
+            <p class="kicker">Orbital mechanics · Systems design</p>
+            <h3>Deorbiting space debris, economically</h3>
+            <p>
+              Proposed a satellite constellation of small deflector satellites and large
+              decelerator satellites to remove space debris economically in low Earth
+              orbit. The idea is to combine cheap, distributed nudges with a smaller number
+              of high-capability braking assets.
+            </p>
+            <p>
+              It is a systems problem as much as an orbital-mechanics one: the encounter
+              geometry, the energy budget, and the cost of every kilogram launched.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>Orbital mechanics</li>
+              <li>Constellation design</li>
+              <li>Space sustainability</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- More experiments -->
+        <div class="more">
+          <div class="more__head reveal">
+            <p class="kicker">More experiments</p>
+            <p>The drawer where the smaller, stranger things live.</p>
+          </div>
+          <div class="more__grid">
+            <article class="mini-card reveal">
+              <figure class="media media--dark media--video mini-card__media">
+                <video data-ambient muted loop playsinline preload="none" poster="assets/media/ising-poster.webp" aria-label="A two-dimensional Ising model evolving through a Monte Carlo simulation on CUDA.">
+                  <source src="assets/media/ising.mp4" type="video/mp4">
+                </video>
+                <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/ising.mp4" data-caption="2D Ising model — CUDA simulation at the critical point" aria-label="Enlarge Ising model animation">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </figure>
+              <div class="mini-card__body">
+                <p class="kicker">CUDA · Statistical mechanics</p>
+                <h3>2D Ising model</h3>
+                <p>A 2D Ising model simulated statistically in CUDA: spins on a lattice, and the fluctuations that emerge near a phase transition.</p>
+                <ul class="tags"><li>CUDA</li><li>Monte Carlo</li><li>Phase transitions</li></ul>
+              </div>
+            </article>
+
+            <article class="mini-card reveal">
+              <figure class="media media--dark media--video mini-card__media">
+                <video data-ambient muted loop playsinline preload="none" poster="assets/media/fractal-poster.webp" aria-label="Fractal zoom computed as part of a large-N collision solver project.">
+                  <source src="assets/media/fractal.mp4" type="video/mp4">
+                </video>
+                <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/fractal.mp4" data-caption="Fractal formulation — large-N collision solver" aria-label="Enlarge fractal animation">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </figure>
+              <div class="mini-card__body">
+                <p class="kicker">Collision systems</p>
+                <h3>Large-N body collisions</h3>
+                <p>A collision solver built for large N, shown through the fractal formulation used to explore its behaviour.</p>
+                <ul class="tags"><li>N-body</li><li>Spatial queries</li><li>Fractals</li></ul>
+              </div>
+            </article>
+
+            <article class="mini-card mini-card--note reveal">
+              <div class="notebook" aria-hidden="true">
+                <span class="notebook__comment">// CL677 · stochastic PDEs</span>
+                <span class="notebook__line"><span class="notebook__key">assignment</span> = <span class="notebook__str">"GPU stochastic simulation"</span></span>
+                <span class="notebook__line"><span class="notebook__key">status</span> = <span class="notebook__str">"figures in the vault"</span></span>
+                <span class="notebook__cursor"></span>
+              </div>
+              <div class="mini-card__body">
+                <p class="kicker">GPU computing · Coursework</p>
+                <h3>Stochastic simulation</h3>
+                <p>GPU computation for stochastic simulation, from CL677: Stochastic PDEs. The assignment figures are still being catalogued — this one is best explained in person.</p>
+                <ul class="tags"><li>GPU</li><li>Stochastic PDEs</li><li>CL677</li></ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MATHS INTERLUDE
+    ============================================================= -->
+    <section class="maths" aria-labelledby="maths-title">
+      <div class="maths__glyphs" aria-hidden="true">
+        <span>σ = C : ε</span>
+        <span>∂u/∂t + ∇·F = 0</span>
+        <span>ẋ = f(x)</span>
+      </div>
+      <div class="wrap maths__inner">
+        <div class="section-label reveal">
+          <span class="section-label__num">—</span>
+          <span>A note on mathematics</span>
+        </div>
+        <h2 class="display maths__title reveal" id="maths-title">Math is <em>cool.</em></h2>
+        <div class="maths__body">
+          <p class="lead reveal">
+            Tensor calculus and dynamical systems hold a special place in my heart.
+          </p>
+          <p class="reveal">
+            Since I work a lot in continuum mechanics, I often have to deal with tensors and
+            all their intricate beauty. A course on Nonlinear Elasticity has been my
+            favourite course purely because of how interesting the mathematics was.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RESEARCH
+    ============================================================= -->
+    <section class="section research" id="research" aria-labelledby="research-title">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="section-label reveal">
+            <span class="section-label__num">03</span>
+            <span>Research</span>
+          </div>
+          <h2 class="display section-title reveal" id="research-title">
+            Two questions,<br><em>one field at a time.</em>
+          </h2>
+          <p class="section-intro reveal">
+            My current research is focused on two projects: a B.Tech project on tunable
+            bistable auxetic metasurfaces, and higher-order solution reconstruction using
+            radial basis functions for fluid dynamics.
+          </p>
+        </header>
+
+        <!-- Auxetics -->
+        <article class="research-item reveal" id="auxetics">
+          <div class="research-item__copy">
+            <p class="kicker">B.Tech project · 2025–26</p>
+            <h3>Tunable bistable auxetic metasurfaces</h3>
+            <p>
+              Most standard materials, when expanded longitudinally, shrink in the
+              perpendicular direction. Auxetic materials do the opposite: they expand in the
+              perpendicular direction, increasing their total area or volume. They have a
+              negative Poisson's ratio.
+            </p>
+            <p>
+              Auxetic metamaterials obtain this property not from the material they are made
+              of, but from the geometry of their cells. I work on a subclass that is bi- or
+              multi-stable, and on ways to tune the transition between states on the fly so
+              they may be used as low-powered actuators, among many other things.
+            </p>
+            <p>
+              The primary investment has been the development of a fast lattice-spring solver
+              for rapid geometry iteration — a tool for navigating the topology space toward
+              exotic unit cells with the properties we want.
+            </p>
+
+            <figure class="citation">
+              <figcaption>Conference presentation · July 2026</figcaption>
+              <blockquote>
+                Samanth Martis* and Krishnendu Haldar, “Simulation and Design of Tunable
+                Bistable Auxetic Metamaterials,” INCAM 2026, IIT Kanpur.
+              </blockquote>
+              <p>*Presenting author</p>
+            </figure>
+          </div>
+
+          <div class="research-item__media">
+            <figure class="media media--paper media--square research-video">
+              <video data-ambient muted loop playsinline preload="none" poster="assets/media/cell-evolution-poster.webp" aria-label="Animation of a unit cell evolving through a sequence of candidate geometries.">
+                <source src="assets/media/cell-evolution.mp4" type="video/mp4">
+              </video>
+              <figcaption class="media__tag">Topology exploration</figcaption>
+              <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/cell-evolution.mp4" data-caption="Unit-cell evolution — lattice-spring model" aria-label="Enlarge unit cell evolution animation">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </figure>
+
+            <figure class="diagram diagram--auxetic">
+              <svg viewBox="0 0 520 260" role="img" aria-labelledby="auxetic-svg-title auxetic-svg-desc">
+                <title id="auxetic-svg-title">Conventional versus auxetic deformation</title>
+                <desc id="auxetic-svg-desc">A conventional cell contracts vertically while stretched horizontally; an auxetic re-entrant cell expands vertically as well.</desc>
+                <g class="diagram__ink" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+                  <g transform="translate(26 42)">
+                    <text x="0" y="-14" class="diagram__label">Conventional</text>
+                    <path d="M40 34h120v92H40z"/>
+                    <path d="M70 34v92M100 34v92M130 34v92M40 57h120M40 80h120M40 103h120" opacity=".35"/>
+                    <path d="M10 80h20M170 80h20" class="diagram__accent"/>
+                    <path d="M28 72l-8 8 8 8M172 72l8 8-8 8" class="diagram__accent"/>
+                    <path d="M100 8v22M100 152v-22" class="diagram__muted"/>
+                    <path d="M92 22l8 8 8-8M92 138l8-8 8 8" class="diagram__muted"/>
+                    <text x="192" y="84" class="diagram__note">ν &gt; 0</text>
+                  </g>
+                  <g transform="translate(300 42)">
+                    <text x="0" y="-14" class="diagram__label">Auxetic</text>
+                    <path d="M20 34h130v92H20z"/>
+                    <path d="M40 34l20 46-20 46M90 34l20 46-20 46M140 34l-20 46 20 46" class="diagram__accent"/>
+                    <path d="M20 80h20M150 80h20" class="diagram__accent"/>
+                    <path d="M38 72l-8 8 8 8M152 72l8 8-8 8" class="diagram__accent"/>
+                    <path d="M85 10v18M85 132v18" class="diagram__accent"/>
+                    <path d="M77 28l8-8 8 8M77 150l8 8 8-8" class="diagram__accent"/>
+                    <text x="192" y="84" class="diagram__note">ν &lt; 0</text>
+                  </g>
+                </g>
+              </svg>
+              <figcaption>Same stretch, different geometry.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- RBF -->
+        <article class="research-item research-item--reverse reveal" id="rbf">
+          <div class="research-item__copy">
+            <p class="kicker">Research · Numerical methods</p>
+            <h3>Higher-order reconstruction with radial basis functions</h3>
+            <p>
+              Standard techniques for reconstructing a field variable from cell-averaged
+              quantities are often very complex — or simply not possible — on unstructured
+              grids. A primary reason is the lack of appropriate coordinate directions.
+              Methods that are agnostic to grid connectivity offer a viable alternative.
+            </p>
+            <p>
+              Approximating the field with a linear combination of radial basis functions —
+              functions whose value depends only on distance from a centre — allows an
+              arbitrarily high-order reconstruction, depending on the type of RBF and its
+              support region.
+            </p>
+            <p>
+              The advantage over other interpolating functions is that RBFs can be used in
+              arbitrary dimensions with minimal change. Moreover, no structure needs to be
+              presumed for the method to work, which makes them especially attractive for
+              unstructured grids in multi-dimensional problems.
+            </p>
+            <ul class="tags" aria-label="Topics">
+              <li>Radial basis functions</li>
+              <li>High-order reconstruction</li>
+              <li>Unstructured grids</li>
+            </ul>
+          </div>
+
+          <div class="research-item__media">
+            <figure class="diagram diagram--rbf">
+              <svg viewBox="0 0 520 380" role="img" aria-labelledby="rbf-svg-title rbf-svg-desc">
+                <title id="rbf-svg-title">Radial basis function support on an unstructured stencil</title>
+                <desc id="rbf-svg-desc">A central node surrounded by irregular neighbouring nodes, with concentric dashed circles showing the radial support of a basis function.</desc>
+                <g class="diagram__ink">
+                  <g fill="none" stroke="currentColor" stroke-width="1.2" class="diagram__muted">
+                    <circle cx="260" cy="190" r="54" stroke-dasharray="3 6" opacity=".55"/>
+                    <circle cx="260" cy="190" r="92" stroke-dasharray="3 6" opacity=".4"/>
+                    <circle cx="260" cy="190" r="130" stroke-dasharray="3 6" opacity=".25"/>
+                  </g>
+                  <g stroke="currentColor" stroke-width="1" opacity=".35">
+                    <path d="M260 190 168 108M260 190 352 96M260 190 394 208M260 190 336 304M260 190 190 318M260 190 116 252M260 190 160 178M260 190 262 74"/>
+                  </g>
+                  <g fill="currentColor">
+                    <circle cx="260" cy="190" r="6" class="diagram__accent-fill"/>
+                    <circle cx="168" cy="108" r="4"/>
+                    <circle cx="352" cy="96" r="4"/>
+                    <circle cx="394" cy="208" r="4"/>
+                    <circle cx="336" cy="304" r="4"/>
+                    <circle cx="190" cy="318" r="4"/>
+                    <circle cx="116" cy="252" r="4"/>
+                    <circle cx="160" cy="178" r="4"/>
+                    <circle cx="262" cy="74" r="4"/>
+                    <circle cx="86" cy="92" r="3.5" opacity=".7"/>
+                    <circle cx="430" cy="318" r="3.5" opacity=".7"/>
+                    <circle cx="64" cy="196" r="3.5" opacity=".7"/>
+                    <circle cx="438" cy="134" r="3.5" opacity=".7"/>
+                    <circle cx="304" cy="348" r="3.5" opacity=".7"/>
+                    <circle cx="218" cy="42" r="3.5" opacity=".7"/>
+                  </g>
+                  <g class="diagram__note" fill="currentColor">
+                    <text x="276" y="186">φ(r)</text>
+                    <text x="376" y="194">r</text>
+                    <text x="44" y="32" class="diagram__label">No grid. No preferred direction.</text>
+                  </g>
+                </g>
+              </svg>
+              <figcaption>A grid-agnostic stencil, with radial support.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- Past work -->
+        <article class="past-work reveal" id="tpv">
+          <div class="past-work__copy">
+            <p class="kicker">Past work · Dec 2025</p>
+            <h3>Thermophotovoltaic cells for waste heat recovery</h3>
+            <p>
+              Thermophotovoltaic (TPV) cells hold significant potential for efficient
+              heat-to-electricity conversion. Similar to solar cells, they operate by
+              converting photons into electrical energy. The key difference lies in their
+              spectral response: TPV cells are optimised to operate in the infrared, making
+              them well-suited to recovering waste heat and enabling higher overall system
+              efficiency.
+            </p>
+            <p>
+              This also makes TPV devices nearly fuel-agnostic, as they can be driven by heat
+              sources such as fossil fuels, nuclear reactors or concentrated solar power. My
+              work involved simulating various TPV cell architectures and creating models for
+              capturing the multi-physics interactions that arise at the high temperatures
+              these devices require.
+            </p>
+
+            <figure class="citation">
+              <figcaption>Conference presentation · December 2025</figcaption>
+              <blockquote>
+                Samanth Martis* and Krishnendu Haldar, “Simulation of Voltage Generation in
+                Thermophotovoltaic (TPV) Cells Using Finite Element Analysis,” accepted and
+                presented at ICTACEM 2025, IIT Kharagpur.
+              </blockquote>
+              <p>*Presenting author</p>
+            </figure>
+          </div>
+
+          <figure class="diagram diagram--tpv">
+            <svg viewBox="0 0 520 340" role="img" aria-labelledby="tpv-svg-title tpv-svg-desc">
+              <title id="tpv-svg-title">Thermophotovoltaic cell schematic</title>
+              <desc id="tpv-svg-desc">A heat source heats an emitter, which radiates infrared photons into a TPV cell; the cell produces electrical power across electrodes.</desc>
+              <defs>
+                <marker id="tpv-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M0 0 10 5 0 10z" fill="currentColor"/>
+                </marker>
+              </defs>
+              <g class="diagram__ink" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
+                <text x="30" y="30" class="diagram__label">Thermophotovoltaic conversion</text>
+
+                <!-- heat source -->
+                <rect x="30" y="104" width="92" height="132" rx="4"/>
+                <path d="M52 156h20M52 174h30M52 192h16" class="diagram__muted"/>
+                <text x="30" y="258" class="diagram__note">Heat source</text>
+
+                <!-- emitter -->
+                <rect x="158" y="112" width="20" height="116" fill="currentColor" opacity=".16"/>
+                <rect x="158" y="112" width="20" height="116"/>
+                <text x="146" y="256" class="diagram__note">Emitter</text>
+
+                <!-- IR photons -->
+                <g class="diagram__accent" stroke="currentColor">
+                  <path d="M188 136c16 8 16 16 0 24s-16 16 0 24 16 16 0 24" marker-end="url(#tpv-arrow)"/>
+                  <path d="M196 150c12 6 12 12 0 18s-12 12 0 18 12 12 0 18" opacity=".6"/>
+                  <text x="200" y="98" class="diagram__note" fill="currentColor" stroke="none">infrared</text>
+                </g>
+
+                <!-- cell stack -->
+                <rect x="290" y="112" width="34" height="116" fill="currentColor" opacity=".08"/>
+                <rect x="290" y="112" width="34" height="116"/>
+                <path d="M290 140h34M290 170h34M290 200h34" opacity=".4"/>
+                <text x="272" y="256" class="diagram__note">TPV cell</text>
+
+                <!-- electrodes -->
+                <path d="M324 132h54M324 208h54" class="diagram__accent"/>
+                <circle cx="386" cy="132" r="4" class="diagram__accent-fill" fill="currentColor"/>
+                <circle cx="386" cy="208" r="4" class="diagram__accent-fill" fill="currentColor"/>
+                <text x="400" y="136" class="diagram__note">+</text>
+                <text x="400" y="212" class="diagram__note">−</text>
+                <text x="324" y="256" class="diagram__note">Electrical power</text>
+
+                <!-- heat flow -->
+                <g class="diagram__muted" stroke="currentColor">
+                  <path d="M122 170h28" marker-end="url(#tpv-arrow)"/>
+                  <path d="M30 282h350" stroke-dasharray="2 7" opacity=".4"/>
+                </g>
+                <text x="30" y="308" class="diagram__note">Heat in → photons → electricity</text>
+              </g>
+            </svg>
+            <figcaption>Heat, photons, and a voltage.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================= -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="section-label reveal">
+            <span class="section-label__num">04</span>
+            <span>About</span>
+          </div>
+          <h2 class="display section-title reveal" id="about-title">
+            Outside the lab,<br><em>I collect hobbies.</em>
+          </h2>
+          <p class="section-intro reveal">
+            Outside academics, I collect 'em like Pokémon. Here are a few of the ones that
+            have stuck.
+          </p>
+        </header>
+
+        <div class="about__grid">
+          <div class="about__photos">
+            <figure class="photo photo--tall reveal">
+              <img src="assets/media/me-dog.webp" width="898" height="1200" alt="Samanth hugging a brown dog in a garden." loading="lazy" decoding="async">
+              <figcaption>Back home, with the best colleague.</figcaption>
+            </figure>
+            <figure class="photo photo--square reveal">
+              <div class="photo__placeholder">
+                <span class="photo__placeholder-mark" aria-hidden="true">+</span>
+                <span>Crochet, postcards, printmaking &amp; crow-watching</span>
+                <small>Photographs on the way</small>
+              </div>
+              <figcaption>The rest of the collection.</figcaption>
+            </figure>
+          </div>
+
+          <div class="about__body">
+            <div class="hobby reveal">
+              <span class="hobby__num">01</span>
+              <div>
+                <h3>Running</h3>
+                <p>
+                  I run 5Ks around the campus two or three times a week. It does wonders for
+                  my mental health and my heart, and I enjoy having to push myself through
+                  the last bit of a run.
+                </p>
+              </div>
+            </div>
+
+            <div class="hobby reveal">
+              <span class="hobby__num">02</span>
+              <div>
+                <h3>Training</h3>
+                <p>
+                  I do a lot of other workout as well. One's body must be able to hold the
+                  weight of the mind's ambition.
+                </p>
+              </div>
+            </div>
+
+            <div class="hobby reveal">
+              <span class="hobby__num">03</span>
+              <div>
+                <h3>Trekking &amp; badminton</h3>
+                <p>
+                  I like to go out trekking, though I don't do it nearly as much as I should.
+                  Badminton is a sport I enjoy significantly — though I get hyper-competitive
+                  and end up damaging myself, so I have to play it with care.
+                </p>
+              </div>
+            </div>
+
+            <div class="hobby reveal">
+              <span class="hobby__num">04</span>
+              <div>
+                <h3>Making things by hand</h3>
+                <p>
+                  I crochet a lot, and I send postcards to friends with drawings on the back.
+                  Until they are posted, they end up being pretty cool decorations in my room.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-quests reveal">
+          <p class="kicker">Side quests</p>
+          <div class="side-quests__grid">
+            <article class="quest">
+              <h3>Printmaking</h3>
+              <p>Carving, ink, and the patient art of the reverse image.</p>
+              <span class="quest__status">Timelapse pending</span>
+            </article>
+            <article class="quest">
+              <h3>VR design</h3>
+              <p>Building worlds in virtual space — one of them is called Yggdrasil.</p>
+            </article>
+            <article class="quest">
+              <h3>Feeding crows</h3>
+              <p>Trying to befriend the local crows. Good progress is being made with mutual recognition.</p>
+            </article>
+            <article class="quest">
+              <h3>Gaming</h3>
+              <p>Repo, Trailmakers, Space Marine 2, Rain World — and whatever else has a good idea in it.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <div class="footer__main">
+        <div class="footer__cta">
+          <p class="section-label"><span class="section-label__num">—</span><span>Fin.</span></p>
+          <h2 class="display">Thanks for <em>looking.</em></h2>
+          <p>
+            This site grows as the work does. More experiments — and more photographs — will
+            land here as they leave the terminal.
+          </p>
+
+          <div class="footer__contact" role="group" aria-label="Contact and profiles">
+            <div class="footer__contact-main">
+              <p class="kicker">Say hello</p>
+              <a class="footer__email" href="mailto:samanthmartis@gmail.com">samanthmartis@gmail.com</a>
+            </div>
+            <div class="footer__contact-links">
+              <a href="https://github.com/Sam-MARTis" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">GitHub <span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/samanth-martis-5309ab293/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)">LinkedIn <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <a class="button button--ghost" href="#top">
+            Back to top
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13.5v-10M3.8 7.6 8 3.4l4.2 4.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <aside class="footer__note" aria-label="Colophon">
+          <p class="kicker">Colophon</p>
+          <dl>
+            <div><dt>Type</dt><dd>Newsreader &amp; Manrope</dd></div>
+            <div><dt>Built</dt><dd>HTML, CSS and a little vanilla JavaScript</dd></div>
+            <div><dt>Ambient</dt><dd>A flock of boids, drawn on a canvas</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="footer__base">
+        <p>© 2026 Samanth Martis</p>
+        <p>Aerospace Engineering · IIT Bombay</p>
+        <div class="footer__actions">
+          <button class="motion-toggle" type="button" data-motion-toggle aria-pressed="false">
+            <span class="motion-toggle__dot" aria-hidden="true"></span>
+            <span data-motion-label>Pause motion</span>
+          </button>
+          <button class="motion-toggle theme-toggle-text" type="button" data-theme-toggle-text aria-label="Switch theme">
+            <span data-theme-label>Dark mode</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox__inner">
+      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close enlarged media">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <div class="lightbox__media" data-lightbox-media></div>
+      <p class="lightbox__caption" id="lightbox-caption" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <script src="boids.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
