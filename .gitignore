@@ -7,4 +7,14 @@ node_modules/
 .work/
 Network-Fields-Reference
 Website*
-robots.txt
+# Original source media; the site uses the optimized copies in assets/media/
+assets/Gaming/
+assets/print-making/
+assets/Postcards/
+assets/Running/
+assets/crows/
+assets/VR Design/
+assets/CL677 -Stochastic PDEs/all_trajectories_overlay*.png
+assets/CL677 -Stochastic PDEs/instructions
+assets/Auxetic MMs/HexagonalCell.png
+assets/Auxetic MMs/SquareCellRefinedMesh.png

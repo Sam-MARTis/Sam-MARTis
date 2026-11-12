@@ -119,8 +119,7 @@
             with an interest in computation, physics and mechanics.
           </p>
           <p class="hero__sub">
-            I do a lot of things. What I love most is scientific programming:
-            writing solvers from first principles, then making them fast enough to be useful.
+            I do a lot of things. Two of the things I like most are scientific programming and math that makes my brain feel funny.
           </p>
 
           <div class="hero__actions">
@@ -154,11 +153,28 @@
       </div>
 
       <div class="wrap hero__foot">
-        <a class="scroll-cue" href="#approach">
+        <a class="scroll-cue" href="#introduction">
           <span>Scroll to explore</span>
           <span class="scroll-cue__line" aria-hidden="true"></span>
         </a>
         <p class="hero__footnote">Portfolio · 2026</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INTRODUCTION
+    ============================================================= -->
+    <section class="intro-note" id="introduction" aria-label="Introduction">
+      <div class="wrap">
+        <div class="section-label reveal">
+          <span class="section-label__num">00</span>
+          <span>Introduction</span>
+        </div>
+        <p class="intro-note__text reveal">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a
+          ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit
+          amet fermentum.
+        </p>
       </div>
     </section>
 
@@ -174,20 +190,22 @@
 
         <div class="approach__grid">
           <h2 class="display approach__title reveal" id="approach-title">
-            Build the model.<br>
-            <em>Then make it fast.</em>
+            If it is cool,<br>
+            <em>simulate it.</em>
           </h2>
 
           <div class="approach__body">
             <p class="lead reveal">
-              Most of my work starts with a physical system and a blank editor:
-              a lattice of springs, a shock in a tube, a spin on a lattice, a field on an
-              unstructured mesh.
+              A large number of my work and projects start off as exploratory in nature. 
+              I usually don't have a noble reason to pick a topic. I almost always do it because it sounds cool.
+              Want to simulate the mean stochastic drift of proteins? Sure. 
+              Want to see if you can reproduce this cool youtube video on Barnes-Hut simulation? Worth a shot. 
+              Fluid simulator on the browser??? Gotta try it!
             </p>
             <p class="reveal">
-              I like the moment when the mathematics becomes something you can see — and
-              then fast enough that you can play with it. That usually means writing the
-              solver yourself, understanding where the cost lives, and moving it onto the GPU.
+              Lot of exploration. I like to think of math and siimulations as a big hammer that makes me look at everything else as a nail. 
+              Still trying to figure things out, but I definitely don't mind having a bigger hammer. 
+            
             </p>
           </div>
         </div>
@@ -532,13 +550,15 @@
               </div>
             </article>
 
-            <article class="mini-card mini-card--note reveal">
-              <div class="notebook" aria-hidden="true">
-                <span class="notebook__comment">// CL677 · stochastic PDEs</span>
-                <span class="notebook__line"><span class="notebook__key">assignment</span> = <span class="notebook__str">"GPU stochastic simulation"</span></span>
-                <span class="notebook__line"><span class="notebook__key">status</span> = <span class="notebook__str">"figures in the vault"</span></span>
-                <span class="notebook__cursor"></span>
-              </div>
+            <article class="mini-card mini-card--wide reveal">
+              <figure class="media media--dark mini-card__media">
+                <button class="mini-card__media-button" type="button" data-lightbox data-type="image" data-src="assets/media/research/cl677-trajectories.webp" data-caption="All trajectories — n = 100,000, dt = 0.001, T = 1." aria-label="Enlarge CL677 stochastic trajectory plot">
+                  <img src="assets/media/research/cl677-trajectories.webp" width="1400" height="700" alt="A dense orange fan of 100,000 stochastic trajectories spreading from a common origin over time." loading="lazy" decoding="async">
+                </button>
+                <button class="media__expand" type="button" data-lightbox data-type="image" data-src="assets/media/research/cl677-trajectories.webp" data-caption="All trajectories — n = 100,000, dt = 0.001, T = 1." aria-label="Enlarge CL677 stochastic trajectory plot">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </figure>
               <div class="mini-card__body">
                 <p class="kicker">GPU computing · Coursework</p>
                 <h3>Stochastic simulation</h3>
@@ -600,7 +620,7 @@
         </header>
 
         <!-- Auxetics -->
-        <article class="research-item reveal" id="auxetics">
+        <article class="research-item research-item--balanced reveal" id="auxetics">
           <div class="research-item__copy">
             <p class="kicker">B.Tech project · 2025–26</p>
             <h3>Tunable bistable auxetic metasurfaces</h3>
@@ -651,33 +671,15 @@
               </button>
             </figure>
 
-            <figure class="diagram diagram--auxetic">
-              <svg viewBox="0 0 520 260" role="img" aria-labelledby="auxetic-svg-title auxetic-svg-desc">
-                <title id="auxetic-svg-title">Conventional versus auxetic deformation</title>
-                <desc id="auxetic-svg-desc">A conventional cell contracts vertically while stretched horizontally; an auxetic re-entrant cell expands vertically as well.</desc>
-                <g class="diagram__ink" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">
-                  <g transform="translate(26 42)">
-                    <text x="0" y="-14" class="diagram__label">Conventional</text>
-                    <path d="M40 34h120v92H40z"/>
-                    <path d="M70 34v92M100 34v92M130 34v92M40 57h120M40 80h120M40 103h120" opacity=".35"/>
-                    <path d="M10 80h20M170 80h20" class="diagram__accent"/>
-                    <path d="M28 72l-8 8 8 8M172 72l8 8-8 8" class="diagram__accent"/>
-                    <path d="M100 8v22M100 152v-22" class="diagram__muted"/>
-                    <path d="M92 22l8 8 8-8M92 138l8-8 8 8" class="diagram__muted"/>
-                    <text x="192" y="84" class="diagram__note">ν &gt; 0</text>
-                  </g>
-                  <g transform="translate(300 42)">
-                    <text x="0" y="-14" class="diagram__label">Auxetic</text>
-                    <path d="M20 34h130v92H20z"/>
-                    <path d="M40 34l20 46-20 46M90 34l20 46-20 46M140 34l-20 46 20 46" class="diagram__accent"/>
-                    <path d="M20 80h20M150 80h20" class="diagram__accent"/>
-                    <path d="M38 72l-8 8 8 8M152 72l8 8-8 8" class="diagram__accent"/>
-                    <path d="M85 10v18M85 132v18" class="diagram__accent"/>
-                    <path d="M77 28l8-8 8 8M77 150l8 8 8-8" class="diagram__accent"/>
-                    <text x="192" y="84" class="diagram__note">ν &lt; 0</text>
-                  </g>
-                </g>
-              </svg>
+            <figure class="figure-plate figure-plate--pair">
+              <div class="figure-pair">
+                <button class="figure-plate__button" type="button" data-lightbox data-type="image" data-src="assets/media/research/hexagonal-cell.webp" data-caption="Hexagonal auxetic unit cell built from six mirrored units." aria-label="Enlarge hexagonal unit-cell figure">
+                  <img src="assets/media/research/hexagonal-cell.webp" width="1200" height="1200" alt="Matplotlib figure of a hexagonal unit cell assembled from six mirrored units." loading="lazy" decoding="async">
+                </button>
+                <button class="figure-plate__button" type="button" data-lightbox data-type="image" data-src="assets/media/research/square-cell-mesh.webp" data-caption="Refined triangular mesh on a square unit cell." aria-label="Enlarge refined square-cell mesh figure">
+                  <img src="assets/media/research/square-cell-mesh.webp" width="227" height="226" alt="Refined triangular lattice mesh concentrated around a square unit cell." loading="lazy" decoding="async">
+                </button>
+              </div>
               <figcaption>Same stretch, different geometry.</figcaption>
             </figure>
           </div>
@@ -871,19 +873,87 @@
           </p>
         </header>
 
+        <div class="activity-gallery reveal" role="group" aria-label="Non-academic activities">
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-running.webp" data-caption="Running — 4.91 km around IIT Bombay." aria-label="Enlarge image: Running — 4.91 km around IIT Bombay.">
+        <img src="assets/media/activity/activity-running.webp" alt="Running statistics: 4.91 kilometres around IIT Bombay at an average pace of 4:50 per kilometre." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-01-done.webp" data-caption="Printmaking — first finished print." aria-label="Enlarge image: Printmaking — first finished print.">
+        <img src="assets/media/activity/activity-print-01-done.webp" alt="Black-and-white print of a skull." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-01-carving.webp" data-caption="Printmaking — first print in turquoise." aria-label="Enlarge image: Printmaking — first print in turquoise.">
+        <img src="assets/media/activity/activity-print-01-carving.webp" alt="Turquoise print of a skull design." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-black.webp" data-caption="Printmaking — black-only proof." aria-label="Enlarge image: Printmaking — black-only proof.">
+        <img src="assets/media/activity/activity-print-02-black.webp" alt="Black-only print proof of a skull." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-drawing.webp" data-caption="Printmaking — sketch for the second print." aria-label="Enlarge image: Printmaking — sketch for the second print.">
+        <img src="assets/media/activity/activity-print-02-drawing.webp" alt="Hand-drawn skull sketch beside a green sheet." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-final.webp" data-caption="Printmaking — final second print." aria-label="Enlarge image: Printmaking — final second print.">
+        <img src="assets/media/activity/activity-print-02-final.webp" alt="Final red, yellow and black print of a skull." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-red-black.webp" data-caption="Printmaking — red and black proof." aria-label="Enlarge image: Printmaking — red and black proof.">
+        <img src="assets/media/activity/activity-print-02-red-black.webp" alt="Red and black print proof of a skull." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-red-yellow.webp" data-caption="Printmaking — red and yellow proof." aria-label="Enlarge image: Printmaking — red and yellow proof.">
+        <img src="assets/media/activity/activity-print-02-red-yellow.webp" alt="Red and yellow print proof of a skull." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-carving-final.webp" data-caption="Printmaking — second print in green." aria-label="Enlarge image: Printmaking — second print in green.">
+        <img src="assets/media/activity/activity-print-02-carving-final.webp" alt="Green print of a skull design." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-carving-middle.webp" data-caption="Printmaking — second print in green, detail." aria-label="Enlarge image: Printmaking — second print in green, detail.">
+        <img src="assets/media/activity/activity-print-02-carving-middle.webp" alt="Detail of a green print of a skull design." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile activity-tile--video" type="button" data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-final.mp4" data-caption="Printmaking — pulling the first print." aria-label="Play video: Printmaking — pulling the first print.">
+        <img src="assets/media/activity/activity-print-video-final-poster.webp" alt="Video of the first print being pulled from the press." loading="lazy" decoding="async">
+        <span class="activity-tile__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="activity-tile activity-tile--video" type="button" data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-inking-01.mp4" data-caption="Printmaking — inking the first plate." aria-label="Play video: Printmaking — inking the first plate.">
+        <img src="assets/media/activity/activity-print-video-inking-01-poster.webp" alt="Video of ink being rolled onto the first printing plate." loading="lazy" decoding="async">
+        <span class="activity-tile__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="activity-tile activity-tile--video" type="button" data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-inking-02.mp4" data-caption="Printmaking — inking the second plate." aria-label="Play video: Printmaking — inking the second plate.">
+        <img src="assets/media/activity/activity-print-video-inking-02-poster.webp" alt="Video of ink being rolled onto the second printing plate." loading="lazy" decoding="async">
+        <span class="activity-tile__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-01.webp" data-caption="Postcard — bird and leaves." aria-label="Enlarge image: Postcard — bird and leaves.">
+        <img src="assets/media/activity/activity-postcard-01.webp" alt="Hand-drawn postcard of a bird surrounded by leaves." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-02.webp" data-caption="Postcard — flowers and a hand." aria-label="Enlarge image: Postcard — flowers and a hand.">
+        <img src="assets/media/activity/activity-postcard-02.webp" alt="Hand-drawn postcard of flowers and a hand." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-03.webp" data-caption="Postcard — fox illustration." aria-label="Enlarge image: Postcard — fox illustration.">
+        <img src="assets/media/activity/activity-postcard-03.webp" alt="Hand-drawn postcard of a fox-like creature." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-crows.webp" data-caption="Feeding crows on campus." aria-label="Enlarge image: Feeding crows on campus.">
+        <img src="assets/media/activity/activity-crows.webp" alt="Crows gathered on a campus path around some food." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile activity-tile--video" type="button" data-lightbox data-type="video" data-src="assets/media/activity/activity-vr-yggdrasil.mp4" data-caption="Yggdrasil — a virtual world." aria-label="Play video: Yggdrasil — a virtual world.">
+        <img src="assets/media/activity/activity-vr-yggdrasil-poster.webp" alt="Video of the Yggdrasil virtual-reality world, glowing in magenta and blue." loading="lazy" decoding="async">
+        <span class="activity-tile__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-scorn.webp" data-caption="Scorn." aria-label="Enlarge image: Scorn.">
+        <img src="assets/media/activity/activity-gaming-scorn.webp" alt="Screenshot from the game Scorn." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-spacemarine-difficulty.webp" data-caption="Space Marine 2 — difficulty selection." aria-label="Enlarge image: Space Marine 2 — difficulty selection.">
+        <img src="assets/media/activity/activity-gaming-spacemarine-difficulty.webp" alt="Screenshot of the Space Marine 2 difficulty selection screen." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-spacemarine-loading.webp" data-caption="Space Marine 2." aria-label="Enlarge image: Space Marine 2.">
+        <img src="assets/media/activity/activity-gaming-spacemarine-loading.webp" alt="Space Marine 2 loading screen." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-peak.webp" data-caption="PEAK." aria-label="Enlarge image: PEAK.">
+        <img src="assets/media/activity/activity-gaming-peak.webp" alt="Screenshot from the game PEAK." loading="lazy" decoding="async">
+      </button>
+      <button class="activity-tile" type="button" data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-repo.webp" data-caption="Repo." aria-label="Enlarge image: Repo.">
+        <img src="assets/media/activity/activity-gaming-repo.webp" alt="Screenshot from the game Repo." loading="lazy" decoding="async">
+      </button>
+        </div>
+
         <div class="about__grid">
           <div class="about__photos">
             <figure class="photo photo--tall reveal">
               <img src="assets/media/me-dog.webp" width="898" height="1200" alt="Samanth hugging a brown dog in a garden." loading="lazy" decoding="async">
               <figcaption>Back home, with the best colleague.</figcaption>
-            </figure>
-            <figure class="photo photo--square reveal">
-              <div class="photo__placeholder">
-                <span class="photo__placeholder-mark" aria-hidden="true">+</span>
-                <span>Crochet, postcards, printmaking &amp; crow-watching</span>
-                <small>Photographs on the way</small>
-              </div>
-              <figcaption>The rest of the collection.</figcaption>
             </figure>
           </div>
 
@@ -942,7 +1012,6 @@
             <article class="quest">
               <h3>Printmaking</h3>
               <p>Carving, ink, and the patient art of the reverse image.</p>
-              <span class="quest__status">Timelapse pending</span>
             </article>
             <article class="quest">
               <h3>VR design</h3>
