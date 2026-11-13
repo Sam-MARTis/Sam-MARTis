@@ -18,3 +18,8 @@ assets/CL677 -Stochastic PDEs/all_trajectories_overlay*.png
 assets/CL677 -Stochastic PDEs/instructions
 assets/Auxetic MMs/HexagonalCell.png
 assets/Auxetic MMs/SquareCellRefinedMesh.png
+# Source assets for the newer project cards; the site uses assets/media/projects/
+assets/Gravity Sim/
+assets/Blackhold Raytracer/
+assets/LBM/
+assets/DynamicsAndBifurcations/
