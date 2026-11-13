@@ -15,6 +15,200 @@
   const pad = (value) => String(value).padStart(2, '0');
   const decks = [];
 
+  /* ------------------------------------------------------------
+     About media warm-up
+     ------------------------------------------------------------
+     The decks are far down the page. Once the page is idle, fetch
+     the stills/posters in the background, three at a time, so the
+     first paint of each slide is instant. Video metadata is warmed
+     separately; the full MP4 is only fetched for the first clip in
+     each deck when the section is close, or on pointer/focus intent.
+     ------------------------------------------------------------ */
+
+  const about = document.getElementById('about');
+  const videoPreloads = new Map();
+  let imagesWarmed = false;
+  let videoMetadataWarmed = false;
+
+  function networkAllowsPrefetch() {
+    const connection = navigator.connection;
+    if (!connection) return true;
+    if (connection.saveData) return false;
+    return !/(^|-)2g$/.test(connection.effectiveType || '');
+  }
+
+  function networkAllowsVideo() {
+    const connection = navigator.connection;
+    if (!connection) return true;
+    if (connection.saveData) return false;
+    return !['slow-2g', '2g', '3g'].includes(connection.effectiveType);
+  }
+
+  function aboutVideoSources() {
+    if (!about) return [];
+    return Array.from(new Set(
+      Array.from(about.querySelectorAll('[data-deck-slide][data-type="video"]'))
+        .map((slide) => slide.dataset.src)
+        .filter(Boolean)
+    ));
+  }
+
+  function warmAboutImages() {
+    if (!about || imagesWarmed || !networkAllowsPrefetch()) return;
+    imagesWarmed = true;
+
+    const sources = Array.from(new Set(
+      Array.from(about.querySelectorAll('[data-deck-slide] img'))
+        .map((image) => image.currentSrc || image.src)
+        .filter(Boolean)
+    ));
+
+    let cursor = 0;
+    let active = 0;
+    const next = () => {
+      while (active < 3 && cursor < sources.length) {
+        const src = sources[cursor];
+        cursor += 1;
+        active += 1;
+
+        const image = new Image();
+        image.decoding = 'async';
+        image.onload = image.onerror = () => {
+          active -= 1;
+          next();
+        };
+        image.src = src;
+      }
+    };
+    next();
+  }
+
+  function warmAboutVideoMetadata() {
+    if (!about || videoMetadataWarmed || !networkAllowsPrefetch()) return;
+    videoMetadataWarmed = true;
+
+    const sources = aboutVideoSources();
+    let cursor = 0;
+    const next = () => {
+      const src = sources[cursor];
+      cursor += 1;
+      if (!src) return;
+
+      const video = document.createElement('video');
+      video.preload = 'metadata';
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute('aria-hidden', 'true');
+      video.tabIndex = -1;
+      video.src = src;
+      video.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;';
+
+      let finished = false;
+      let timer = 0;
+      const done = () => {
+        if (finished) return;
+        finished = true;
+        window.clearTimeout(timer);
+        video.remove();
+        next();
+      };
+
+      timer = window.setTimeout(done, 8000);
+      video.addEventListener('loadedmetadata', done, { once: true });
+      video.addEventListener('error', done, { once: true });
+      document.body.appendChild(video);
+      video.load();
+    };
+    next();
+  }
+
+  function preloadAboutVideo(src) {
+    if (!src || !networkAllowsVideo() || videoPreloads.has(src)) return;
+
+    const video = document.createElement('video');
+    video.preload = 'auto';
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('aria-hidden', 'true');
+    video.tabIndex = -1;
+    video.src = src;
+    video.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;';
+
+    let timer = 0;
+    const cleanup = () => {
+      window.clearTimeout(timer);
+      video.remove();
+      videoPreloads.delete(src);
+    };
+
+    timer = window.setTimeout(cleanup, 30000);
+    video.addEventListener('canplaythrough', cleanup, { once: true });
+    video.addEventListener('error', cleanup, { once: true });
+    videoPreloads.set(src, video);
+    document.body.appendChild(video);
+    video.load();
+  }
+
+  function warmFirstDeckVideos() {
+    if (!about || !networkAllowsVideo()) return;
+    const seen = new Set();
+    about.querySelectorAll('[data-deck]').forEach((deck) => {
+      const slide = deck.querySelector('[data-deck-slide][data-type="video"]');
+      const src = slide && slide.dataset.src;
+      if (src && !seen.has(src)) {
+        seen.add(src);
+        preloadAboutVideo(src);
+      }
+    });
+  }
+
+  function warmOnIntent() {
+    if (!about) return;
+    about.querySelectorAll('[data-deck-slide][data-type="video"]').forEach((slide) => {
+      const src = slide.dataset.src;
+      if (!src) return;
+      const warm = () => preloadAboutVideo(src);
+      slide.addEventListener('pointerenter', warm, { once: true, passive: true });
+      slide.addEventListener('focus', warm, { once: true });
+      slide.addEventListener('touchstart', warm, { once: true, passive: true });
+    });
+  }
+
+  function scheduleAboutWarmup() {
+    if (!about) return;
+    const run = () => {
+      warmAboutImages();
+      window.setTimeout(warmAboutVideoMetadata, 600);
+    };
+    if (document.readyState === 'complete') run();
+    else window.addEventListener('load', run, { once: true });
+
+    if ('IntersectionObserver' in window) {
+      const warmObserver = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          warmAboutImages();
+          warmAboutVideoMetadata();
+          warmObserver.disconnect();
+        },
+        { rootMargin: '1200px 0px' }
+      );
+      warmObserver.observe(about);
+
+      const videoObserver = new IntersectionObserver(
+        (entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          warmFirstDeckVideos();
+          videoObserver.disconnect();
+        },
+        { rootMargin: '400px 0px' }
+      );
+      videoObserver.observe(about);
+    } else {
+      warmFirstDeckVideos();
+    }
+  }
+
   function createDeck(root, order) {
     const slides = Array.from(root.querySelectorAll('[data-deck-slide]'));
     if (!slides.length) return null;
@@ -74,6 +268,9 @@
         slide.setAttribute('aria-hidden', String(!active));
         if (active) slide.removeAttribute('tabindex');
         else slide.setAttribute('tabindex', '-1');
+        if (active && visible && slide.dataset.type === 'video') {
+          preloadAboutVideo(slide.dataset.src);
+        }
       });
 
       if (currentEl) currentEl.textContent = pad(index + 1);
@@ -174,13 +371,14 @@
             visible = entry.isIntersecting;
             if (visible) {
               preload();
+              render();
               schedule(900 + (order % 4) * 420);
             } else {
               clearTimer();
             }
           });
         },
-        { threshold: 0.22 }
+        { threshold: 0.22, rootMargin: '300px 0px' }
       );
       observer.observe(root);
     } else {
@@ -196,6 +394,9 @@
       schedule: () => schedule(interval)
     };
   }
+
+  warmOnIntent();
+  scheduleAboutWarmup();
 
   roots.forEach((root, index) => {
     const deck = createDeck(root, index);

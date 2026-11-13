@@ -36,6 +36,9 @@
   const POINTER_RADIUS = 145;
 
   const root = document.documentElement;
+  const isCompact = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 700;
+  const FRAME_INTERVAL = isCompact ? 1000 / 30 : 0;
+  let lastPaint = 0;
   let boids = [];
   let width = 0;
   let height = 0;
@@ -298,6 +301,10 @@
       return;
     }
 
+    frameId = window.requestAnimationFrame(frame);
+    if (FRAME_INTERVAL && now - lastPaint < FRAME_INTERVAL) return;
+    lastPaint = now;
+
     if (!lastTime) lastTime = now;
     let dt = (now - lastTime) / 1000;
     lastTime = now;
@@ -308,7 +315,6 @@
       draw();
     }
 
-    frameId = window.requestAnimationFrame(frame);
   }
 
   function start() {
@@ -319,6 +325,7 @@
       return;
     }
     lastTime = 0;
+    lastPaint = 0;
     frameId = window.requestAnimationFrame(frame);
   }
 

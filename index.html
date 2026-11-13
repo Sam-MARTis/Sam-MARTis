@@ -26,7 +26,9 @@
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/newsreader-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/media/me-wings.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
@@ -143,7 +145,7 @@
             <span class="hero__portrait-glow" aria-hidden="true"></span>
           </div>
           <div class="hero__inset">
-            <img src="assets/media/me-iitb.webp" width="820" height="815" alt="Samanth in front of the IIT Bombay main gate." loading="lazy" decoding="async">
+            <img src="assets/media/me-iitb.webp" width="820" height="815" alt="Samanth in front of the IIT Bombay main gate." loading="eager" fetchpriority="low" decoding="async">
           </div>
           <figcaption>
             <span>Samanth Martis</span>
@@ -603,13 +605,13 @@
             </article>
 
             <article class="mini-card reveal">
-              <figure class="media media--dark mini-card__media mini-card__media--contain">
-                <button class="mini-card__media-button" type="button" data-lightbox data-type="image" data-src="assets/media/projects/black-hole.gif" data-caption="Black-hole raytracer — lensed shadow" aria-label="Enlarge black-hole raytracer animation">
-                  <img src="assets/media/projects/black-hole.gif" width="498" height="508" alt="A red accretion ring bent around the black shadow of a black hole." loading="lazy" decoding="async">
+              <figure class="media media--dark media--video mini-card__media mini-card__media--contain">
+                <video data-ambient muted loop playsinline preload="none" poster="assets/media/projects/black-hole-poster.webp" aria-label="A red accretion ring bent around the black shadow of a black hole.">
+                  <source src="assets/media/projects/black-hole.mp4" type="video/mp4">
+                </video>
+                <button class="media__expand" type="button" data-lightbox data-type="video" data-src="assets/media/projects/black-hole.mp4" data-caption="Black-hole raytracer — lensed shadow" aria-label="Enlarge black-hole raytracer animation">
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-              <button class="media__expand" type="button" data-lightbox data-type="image" data-src="assets/media/projects/black-hole.gif" data-caption="Black-hole raytracer — lensed shadow" aria-label="Enlarge black-hole raytracer animation">
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M6 14H2v-4M10 14h4v-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
               </figure>
               <div class="mini-card__body">
                 <p class="kicker">Rendering · Ray tracing</p>
@@ -678,7 +680,7 @@
                   <span class="live-frame__dots"><i></i><i></i><i></i></span>
                   <span class="live-frame__url">shaders/gpu</span>
                 </div>
-                <iframe src="assets/shaders/gpu/index.html" title="Custom GPU shader — an interactive displaced sphere" loading="eager" allow="fullscreen"></iframe>
+                <iframe src="assets/shaders/gpu/index.html" data-shader-frame title="Custom GPU shader — an interactive displaced sphere" loading="eager" allow="fullscreen"></iframe>
               </div>
               <p class="live-card__note">Move around using the mouse. A custom vertex shader displaces the sphere; the fragment shader colours it from that displacement.</p>
             </article>

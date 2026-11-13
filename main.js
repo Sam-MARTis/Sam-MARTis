@@ -107,6 +107,49 @@
   });
 
   /* ------------------------------------------------------------
+     Shader embed
+     ------------------------------------------------------------ */
+
+  const shaderFrame = $('iframe[data-shader-frame]');
+  let shaderOnScreen = false;
+  let shaderReady = false;
+
+  function syncShader() {
+    if (!shaderReady || !shaderFrame || !shaderFrame.contentWindow) return;
+    shaderFrame.contentWindow.postMessage({
+      type: 'shader-visibility',
+      visible: shaderOnScreen && !document.hidden && !motionPaused && !lightboxOpen
+    }, '*');
+  }
+
+  if (shaderFrame) {
+    window.addEventListener('message', (event) => {
+      if (event.source !== shaderFrame.contentWindow) return;
+      if (!event.data || event.data.type !== 'shader-ready') return;
+      shaderReady = true;
+      syncShader();
+    });
+
+    shaderFrame.addEventListener('load', () => {
+      shaderReady = true;
+      syncShader();
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        shaderOnScreen = entries.some((entry) => entry.isIntersecting);
+        syncShader();
+      }, { threshold: 0.01 }).observe(shaderFrame);
+    } else {
+      shaderOnScreen = true;
+      syncShader();
+    }
+
+    document.addEventListener('motionchange', syncShader);
+    document.addEventListener('visibilitychange', syncShader);
+  }
+
+  /* ------------------------------------------------------------
      Motion toggle
      ------------------------------------------------------------ */
 
@@ -268,6 +311,7 @@
     lightboxOpen = true;
     document.body.classList.add('is-locked');
     pauseAllVideos();
+    syncShader();
 
     const closeButton = $('[data-lightbox-close]');
     if (closeButton) closeButton.focus();
@@ -287,6 +331,7 @@
       document.body.classList.remove('is-locked');
       if (lightboxMedia) lightboxMedia.innerHTML = '';
       playVisibleVideos();
+      syncShader();
       if (lastTrigger) {
         lastTrigger.focus();
         lastTrigger = null;

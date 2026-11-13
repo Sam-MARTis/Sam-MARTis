@@ -3280,3 +3280,11 @@ main,
     aspect-ratio: 4 / 3;
   }
 }
+
+/* Keep the fixed header cheap to composite while scrolling on phones. */
+@media (max-width: 700px) {
+  .site-header.is-scrolled {
+    -webkit-backdrop-filter: blur(8px) saturate(1.08);
+    backdrop-filter: blur(8px) saturate(1.08);
+  }
+}

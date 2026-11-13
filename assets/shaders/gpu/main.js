@@ -158,42 +158,100 @@ void main() {
 
 `
 
-const makeRender = (t=0) => {
-    material.uniforms.uTime.value = t/2.0;
-    renderer.render(scene, camera);
-controls.update()
-requestAnimationFrame(makeRender)
-}
-
-
 const canvas = document.getElementById("testCanvas");
-canvas.width = window.innerWidth * devicePixelRatio;
-canvas.height = window.innerHeight * devicePixelRatio;
+const isCompact = window.matchMedia("(pointer: coarse)").matches
+  || Math.min(window.innerWidth, window.innerHeight) < 700;
+
 const fov = 75;
-const AR = canvas.width/canvas.height;
 const near = 0.1;
 const far = 5;
 
-const camera = new THREE.PerspectiveCamera(fov, AR, near, far);
-const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({antialias: true, canvas})
+const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, near, far);
+camera.position.z = 3;
 
-const geo = new THREE.IcosahedronGeometry(1.0, 200);
+const scene = new THREE.Scene();
+const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    powerPreference: "high-performance"
+});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCompact ? 1.5 : 2));
+
+// The original used 200 subdivisions, producing roughly 800k triangles for a
+// sphere that is only a few hundred pixels wide on a phone. 96 keeps the
+// displaced silhouette clean while cutting the triangle count by over 4x.
+const detail = 96;
+const geo = new THREE.IcosahedronGeometry(1.0, detail);
 const material = new THREE.RawShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader
 })
 material.uniforms.uTime = {value: 0}
 const obj = new THREE.Mesh(geo, material)
-
-
-camera.position.z = 3;
+scene.add(obj)
 
 const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.dampingFactor = 0.03;
+controls.enableDamping = false;
+controls.update();
 
+const frameInterval = 1000 / (isCompact ? 30 : 60);
+let running = false;
+let rafId = 0;
+let lastFrame = 0;
 
+function tick(now) {
+    rafId = 0;
+    if (!running) return;
+    if (!lastFrame || now - lastFrame >= frameInterval) {
+        lastFrame = now;
+        material.uniforms.uTime.value = now / 2.0;
+        renderer.render(scene, camera);
+    }
+    rafId = requestAnimationFrame(tick);
+}
 
-scene.add(obj)
-makeRender()
+function start() {
+    if (rafId) return;
+    running = true;
+    lastFrame = 0;
+    rafId = requestAnimationFrame(tick);
+}
+
+function stop() {
+    running = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = 0;
+}
+
+function resize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCompact ? 1.5 : 2));
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    if (running) lastFrame = 0;
+}
+
+window.addEventListener("resize", resize, { passive: true });
+
+let gotVisibility = false;
+window.addEventListener("message", (event) => {
+    if (event.source !== window.parent) return;
+    if (!event.data || event.data.type !== "shader-visibility") return;
+    gotVisibility = true;
+    if (event.data.visible) start();
+    else stop();
+});
+
+resize();
+
+if (window.parent !== window) {
+    // The parent pauses the shader while the card is off-screen.
+    window.parent.postMessage({ type: "shader-ready" }, "*");
+    setTimeout(() => {
+        if (!gotVisibility) start();
+    }, 2000);
+} else {
+    start();
+}
