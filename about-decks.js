@@ -364,6 +364,56 @@
       }
     });
 
+    // Horizontal swipe on the image stage; vertical swipes still scroll the page.
+    const stage = root.querySelector('.a-deck__stage');
+    if (stage) {
+      let touchStart = null;
+      let suppressClickUntil = 0;
+
+      stage.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) {
+          touchStart = null;
+          return;
+        }
+        const touch = event.touches[0];
+        touchStart = { x: touch.clientX, y: touch.clientY };
+      }, { passive: true });
+
+      stage.addEventListener('touchmove', (event) => {
+        if (!touchStart || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        const dx = touch.clientX - touchStart.x;
+        const dy = touch.clientY - touchStart.y;
+
+        if (Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy) * 1.2 && event.cancelable) {
+          event.preventDefault();
+        }
+      }, { passive: false });
+
+      stage.addEventListener('touchend', (event) => {
+        if (!touchStart) return;
+        const touch = event.changedTouches[0];
+        const dx = touch.clientX - touchStart.x;
+        const dy = touch.clientY - touchStart.y;
+        touchStart = null;
+
+        if (Math.abs(dx) < 42 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+
+        suppressClickUntil = Date.now() + 450;
+        if (slides.length > 1) step(dx < 0 ? 1 : -1);
+      }, { passive: true });
+
+      stage.addEventListener('touchcancel', () => {
+        touchStart = null;
+      }, { passive: true });
+
+      stage.addEventListener('click', (event) => {
+        if (Date.now() >= suppressClickUntil) return;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+    }
+
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(
         (entries) => {
