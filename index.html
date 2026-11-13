@@ -27,6 +27,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://homepages.iitb.ac.in">
+  <link rel="dns-prefetch" href="https://homepages.iitb.ac.in">
   <link rel="stylesheet" href="styles.css">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
@@ -678,7 +680,7 @@
                   <span class="live-frame__dots"><i></i><i></i><i></i></span>
                   <span class="live-frame__url">homepages.iitb.ac.in/~23b0046</span>
                 </div>
-                <iframe src="https://homepages.iitb.ac.in/~23b0046/" title="Custom GPU shader — an interactive displaced sphere" loading="lazy" allow="fullscreen"></iframe>
+                <iframe src="https://homepages.iitb.ac.in/~23b0046/" title="Custom GPU shader — an interactive displaced sphere" loading="eager" fetchpriority="high" allow="fullscreen"></iframe>
               </div>
               <p class="live-card__note">Move around using the mouse. A custom vertex shader displaces the sphere; the fragment shader colours it from that displacement.</p>
             </article>
