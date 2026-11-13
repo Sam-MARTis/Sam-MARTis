@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About section studies — Samanth Martis</title>
+  <meta name="description" content="Three design studies for the About section of Samanth Martis's portfolio.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2efe7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1310" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="about-designs.css">
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        var theme = localStorage.getItem('theme');
+        if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        root.dataset.theme = theme;
+      } catch (e) { root.dataset.theme = 'light'; }
+    })();
+  </script>
+</head>
+
+<body class="lab-page">
+  <a class="skip-link" href="#studies">Skip to the studies</a>
+
+  <header class="lab-bar">
+    <div class="lab-bar__in">
+      <a class="lab-brand" href="#top">
+        <span class="lab-brand__mark" aria-hidden="true">S</span>
+        <span class="lab-brand__name">Samanth Martis</span>
+        <span class="lab-brand__sep" aria-hidden="true">/</span>
+        <span class="lab-brand__page">About studies</span>
+      </a>
+
+      <nav class="lab-jump" aria-label="Design studies">
+        <a href="#study-a"><span aria-hidden="true">A</span> Field notes</a>
+        <a href="#study-b"><span aria-hidden="true">B</span> Contact sheet</a>
+        <a href="#study-c"><span aria-hidden="true">C</span> Index</a>
+      </nav>
+
+      <button class="icon-button lab-theme" type="button" data-theme-toggle aria-label="Switch to dark theme" title="Switch theme">
+        <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M12 2.5v2.2M12 19.3v2.2M4.4 4.4l1.6 1.6M18 18l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.4 19.6 6 18M18 6l1.6-1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.1 14.6A8.4 8.4 0 0 1 9.4 3.9 8.5 8.5 0 1 0 20.1 14.6Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="lab-intro">
+      <div class="wrap">
+        <p class="kicker lab-kicker">About section · design study</p>
+        <h1 class="lab-title">Same hobbies.<br><em>Three ways to arrange them.</em></h1>
+        <p class="lab-deck">
+          Every image and clip now lives in <strong>A</strong>'s cycling decks, next to the hobby
+          it belongs to. Trekking and badminton are gone. <strong>B</strong> and <strong>C</strong>
+          remain below for comparison.
+        </p>
+
+        <nav class="lab-legend" aria-label="Jump to a study">
+          <a href="#study-a">
+            <span class="lab-legend__letter">A</span>
+            <span><strong>Field notes</strong><small>Editorial · cycling image decks</small></span>
+          </a>
+          <a href="#study-b">
+            <span class="lab-legend__letter">B</span>
+            <span><strong>Contact sheet</strong><small>Compact · filmstrip rows</small></span>
+          </a>
+          <a href="#study-c">
+            <span class="lab-legend__letter">C</span>
+            <span><strong>Index</strong><small>Tight · a catalogue of hobbies</small></span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STUDY A — FIELD NOTES
+    ============================================================= -->
+    <article class="study study--a" id="study-a">
+      <header class="study-head wrap">
+        <div class="study-head__title">
+          <span class="study-tag">Study A</span>
+          <h2>Field notes</h2>
+        </div>
+        <p class="study-head__note">
+          Alternating rows with a cycling deck for each hobby. Every image and video has a
+          place in a stack; the text stays still and the photographs keep moving.
+        </p>
+      </header>
+
+      <div class="study-stage">
+        <div class="wrap">
+          <header class="a-intro">
+            <div class="section-label">
+              <span class="section-label__num">04</span>
+              <span>About</span>
+            </div>
+            <h3 class="display">Outside the lab,<br><em>I collect hobbies.</em></h3>
+            <p class="section-intro">
+              Outside academics, I collect 'em like Pokémon. Here are a few of the ones that
+              have stuck.
+            </p>
+          </header>
+
+          <p class="a-deck-hint">
+            <span class="a-deck-hint__mark" aria-hidden="true">↻</span>
+            Six decks, 24 images and clips. Multi-image stacks advance on their own — hover,
+            focus, or use the arrows to hold one.
+          </p>
+
+          <div class="a-rows">
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck" data-deck data-deck-label="Running" data-deck-interval="5200">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="Running image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-running.webp"
+                      data-caption="Running — 4.91 km around IIT Bombay." aria-hidden="false"
+                      aria-label="Enlarge image: Running — 4.91 km around IIT Bombay.">
+                      <img src="assets/media/activity/activity-running.webp" width="614" height="1200"
+                        alt="Running statistics: 4.91 kilometres around IIT Bombay at an average pace of 4:50 per kilometre." loading="eager" decoding="async">
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Running — 4.91 km around IIT Bombay.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in Running">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in Running">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in Running">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>01</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">01</span>
+                <h4>Running</h4>
+                <p>
+                  I run 5Ks around the campus two or three times a week. It does wonders for my mental
+                  health and my heart, and I enjoy having to push myself through the last bit of a run.
+                </p>
+              </div>
+            </article>
+
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck" data-deck data-deck-label="Making things by hand" data-deck-interval="5600">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="Making things by hand image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-01.webp"
+                      data-caption="Postcard — bird and leaves." aria-hidden="false"
+                      aria-label="Enlarge image: Postcard — bird and leaves.">
+                      <img src="assets/media/activity/activity-postcard-01.webp" width="653" height="1400"
+                        alt="Hand-drawn postcard of a bird surrounded by leaves." loading="eager" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-02.webp"
+                      data-caption="Postcard — flowers and a hand." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Postcard — flowers and a hand.">
+                      <img src="assets/media/activity/activity-postcard-02.webp" width="653" height="1400"
+                        alt="Hand-drawn postcard of flowers and a hand." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-postcard-03.webp"
+                      data-caption="Postcard — fox illustration." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Postcard — fox illustration.">
+                      <img src="assets/media/activity/activity-postcard-03.webp" width="653" height="1400"
+                        alt="Hand-drawn postcard of a fox-like creature." loading="lazy" decoding="async">
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Postcard — bird and leaves.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in Making things by hand">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in Making things by hand">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in Making things by hand">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>03</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">02</span>
+                <h4>Making things by hand</h4>
+                <p>
+                  I crochet a lot, and I send postcards to friends with drawings on the back. Until they
+                  are posted, they end up being pretty cool decorations in my room.
+                </p>
+              </div>
+            </article>
+
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck" data-deck data-deck-label="Printmaking" data-deck-interval="6200">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="Printmaking image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-01-done.webp"
+                      data-caption="Printmaking — first finished print." aria-hidden="false"
+                      aria-label="Enlarge image: Printmaking — first finished print.">
+                      <img src="assets/media/activity/activity-print-01-done.webp" width="653" height="1400"
+                        alt="Black-and-white print of a skull." loading="eager" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-01-carving.webp"
+                      data-caption="Printmaking — first print in turquoise." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — first print in turquoise.">
+                      <img src="assets/media/activity/activity-print-01-carving.webp" width="653" height="1400"
+                        alt="Turquoise print of a skull design." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-drawing.webp"
+                      data-caption="Printmaking — sketch for the second print." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — sketch for the second print.">
+                      <img src="assets/media/activity/activity-print-02-drawing.webp" width="653" height="1400"
+                        alt="Hand-drawn skull sketch beside a green sheet." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-black.webp"
+                      data-caption="Printmaking — black-only proof." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — black-only proof.">
+                      <img src="assets/media/activity/activity-print-02-black.webp" width="653" height="1400"
+                        alt="Black-only print proof of a skull." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-red-black.webp"
+                      data-caption="Printmaking — red and black proof." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — red and black proof.">
+                      <img src="assets/media/activity/activity-print-02-red-black.webp" width="653" height="1400"
+                        alt="Red and black print proof of a skull." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-red-yellow.webp"
+                      data-caption="Printmaking — red and yellow proof." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — red and yellow proof.">
+                      <img src="assets/media/activity/activity-print-02-red-yellow.webp" width="654" height="1400"
+                        alt="Red and yellow print proof of a skull." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-final.webp"
+                      data-caption="Printmaking — final second print." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — final second print.">
+                      <img src="assets/media/activity/activity-print-02-final.webp" width="653" height="1400"
+                        alt="Final red, yellow and black print of a skull." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-carving-final.webp"
+                      data-caption="Printmaking — second print in green." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — second print in green.">
+                      <img src="assets/media/activity/activity-print-02-carving-final.webp" width="653" height="1400"
+                        alt="Green print of a skull design." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-print-02-carving-middle.webp"
+                      data-caption="Printmaking — second print in green, detail." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Printmaking — second print in green, detail.">
+                      <img src="assets/media/activity/activity-print-02-carving-middle.webp" width="653" height="1400"
+                        alt="Detail of a green print of a skull design." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-inking-01.mp4"
+                      data-caption="Printmaking — inking the first plate." aria-hidden="true" tabindex="-1"
+                      aria-label="Play video: Printmaking — inking the first plate.">
+                      <img src="assets/media/activity/activity-print-video-inking-01-poster.webp" width="900" height="1290"
+                        alt="Video of ink being rolled onto the first printing plate." loading="lazy" decoding="async">
+                      <span class="a-deck__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-inking-02.mp4"
+                      data-caption="Printmaking — inking the second plate." aria-hidden="true" tabindex="-1"
+                      aria-label="Play video: Printmaking — inking the second plate.">
+                      <img src="assets/media/activity/activity-print-video-inking-02-poster.webp" width="900" height="1290"
+                        alt="Video of ink being rolled onto the second printing plate." loading="lazy" decoding="async">
+                      <span class="a-deck__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-final.mp4"
+                      data-caption="Printmaking — pulling the first print." aria-hidden="true" tabindex="-1"
+                      aria-label="Play video: Printmaking — pulling the first print.">
+                      <img src="assets/media/activity/activity-print-video-final-poster.webp" width="900" height="1290"
+                        alt="Video of the first print being pulled from the press." loading="lazy" decoding="async">
+                      <span class="a-deck__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="video" data-src="assets/media/activity/activity-print-video-carving.mp4"
+                      data-caption="Printmaking — carving the first plate." aria-hidden="true" tabindex="-1"
+                      aria-label="Play video: Printmaking — carving the first plate.">
+                      <img src="assets/media/activity/activity-print-video-carving-poster.webp" width="720" height="1280"
+                        alt="Video of the first printing plate being carved." loading="lazy" decoding="async">
+                      <span class="a-deck__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Printmaking — first finished print.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in Printmaking">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in Printmaking">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in Printmaking">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>13</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">03</span>
+                <h4>Printmaking</h4>
+                <p>
+                  Carving, ink, and the patient art of the reverse image.
+                </p>
+              </div>
+            </article>
+
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck a-deck--wide" data-deck data-deck-label="VR design" data-deck-interval="5200">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="VR design image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="video" data-src="assets/media/activity/activity-vr-yggdrasil.mp4"
+                      data-caption="Yggdrasil — a virtual world." aria-hidden="false"
+                      aria-label="Play video: Yggdrasil — a virtual world.">
+                      <img src="assets/media/activity/activity-vr-yggdrasil-poster.webp" width="1000" height="562"
+                        alt="Video of the Yggdrasil virtual-reality world, glowing in magenta and blue." loading="eager" decoding="async">
+                      <span class="a-deck__play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Yggdrasil — a virtual world.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in VR design">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in VR design">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in VR design">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>01</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">04</span>
+                <h4>VR design</h4>
+                <p>
+                  Building worlds in virtual space — one of them is called Yggdrasil.
+                </p>
+              </div>
+            </article>
+
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck" data-deck data-deck-label="Feeding crows" data-deck-interval="5200">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="Feeding crows image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-crows.webp"
+                      data-caption="Feeding crows on campus." aria-hidden="false"
+                      aria-label="Enlarge image: Feeding crows on campus.">
+                      <img src="assets/media/activity/activity-crows.webp" width="1050" height="1400"
+                        alt="Crows gathered on a campus path around some food." loading="eager" decoding="async">
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Feeding crows on campus.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in Feeding crows">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in Feeding crows">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in Feeding crows">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>01</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">05</span>
+                <h4>Feeding crows</h4>
+                <p>
+                  Trying to befriend the local crows. Good progress is being made with mutual
+                  recognition.
+                </p>
+              </div>
+            </article>
+
+            <article class="a-row">
+              <figure class="a-row__media">
+                <div class="a-deck a-deck--wide" data-deck data-deck-label="Gaming" data-deck-interval="5800">
+                  <div class="a-deck__stage" role="group" aria-roledescription="carousel" aria-label="Gaming image deck">
+                    <button class="a-deck__slide is-active" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-scorn.webp"
+                      data-caption="Scorn." aria-hidden="false"
+                      aria-label="Enlarge image: Scorn.">
+                      <img src="assets/media/activity/activity-gaming-scorn.webp" width="1400" height="654"
+                        alt="Screenshot from the game Scorn." loading="eager" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-spacemarine-difficulty.webp"
+                      data-caption="Space Marine 2 — difficulty selection." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Space Marine 2 — difficulty selection.">
+                      <img src="assets/media/activity/activity-gaming-spacemarine-difficulty.webp" width="1400" height="654"
+                        alt="Screenshot of the Space Marine 2 difficulty selection screen." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-spacemarine-loading.webp"
+                      data-caption="Space Marine 2." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Space Marine 2.">
+                      <img src="assets/media/activity/activity-gaming-spacemarine-loading.webp" width="1400" height="654"
+                        alt="Space Marine 2 loading screen." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-peak.webp"
+                      data-caption="PEAK." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: PEAK.">
+                      <img src="assets/media/activity/activity-gaming-peak.webp" width="1400" height="788"
+                        alt="Screenshot from the game PEAK." loading="lazy" decoding="async">
+                    </button>
+                    <button class="a-deck__slide" type="button" data-deck-slide
+                      data-lightbox data-type="image" data-src="assets/media/activity/activity-gaming-repo.webp"
+                      data-caption="Repo." aria-hidden="true" tabindex="-1"
+                      aria-label="Enlarge image: Repo.">
+                      <img src="assets/media/activity/activity-gaming-repo.webp" width="1400" height="788"
+                        alt="Screenshot from the game Repo." loading="lazy" decoding="async">
+                    </button>
+                  </div>
+
+                  <div class="a-deck__bar">
+                    <p class="a-deck__caption" data-deck-caption>Scorn.</p>
+                    <div class="a-deck__nav">
+                      <button class="a-deck__button" type="button" data-deck-prev aria-label="Previous image in Gaming">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.2 3.4 5.6 8l4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button class="a-deck__button a-deck__toggle" type="button" data-deck-toggle aria-pressed="false" aria-label="Pause automatic image changes in Gaming">
+                        <svg class="a-deck__pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                        <svg class="a-deck__play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4.3v7.4L11.5 8z" fill="currentColor"/></svg>
+                      </button>
+                      <button class="a-deck__button" type="button" data-deck-next aria-label="Next image in Gaming">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5.8 3.4 10.4 8l-4.6 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <span class="a-deck__count" aria-hidden="true"><span data-deck-current>01</span> / <span data-deck-total>05</span></span>
+                    </div>
+                  </div>
+                  <div class="a-deck__progress" aria-hidden="true"><span data-deck-progress></span></div>
+                </div>
+              </figure>
+
+              <div class="a-row__copy">
+                <span class="a-row__no">06</span>
+                <h4>Gaming</h4>
+                <p>
+                  Repo, Trailmakers, Space Marine 2, Rain World — and whatever else has a good idea in
+                  it.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         STUDY B — CONTACT SHEET
+    ============================================================= -->
+    <article class="study study--b" id="study-b">
+      <header class="study-head wrap">
+        <div class="study-head__title">
+          <span class="study-tag">Study B</span>
+          <h2>Contact sheet</h2>
+        </div>
+        <p class="study-head__note">
+          Compact filmstrip rows: words on the left, each hobby's photographs in a strip.
+          More hobbies fit into a single pass than in the editorial layout.
+        </p>
+      </header>
+
+      <div class="study-stage">
+        <div class="wrap">
+          <header class="b-intro">
+            <div class="section-label">
+              <span class="section-label__num">04</span>
+              <span>About</span>
+            </div>
+            <div class="b-intro__text">
+              <h3 class="display">Outside the lab,<br><em>I collect hobbies.</em></h3>
+              <p class="section-intro">
+                Outside academics, I collect 'em like Pokémon. Here are a few of the ones that
+                have stuck.
+              </p>
+            </div>
+          </header>
+
+          <div class="b-grid">
+            <article class="b-card b-card--running">
+              <div class="b-card__media">
+                <button class="shot" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-running.webp"
+                  data-caption="Running — 4.91 km around IIT Bombay."
+                  aria-label="Enlarge image: Running — 4.91 km around IIT Bombay.">
+                  <img src="assets/media/activity/activity-running.webp" width="614" height="1200"
+                    alt="Running statistics: 4.91 kilometres around IIT Bombay at an average pace of 4:50 per kilometre."
+                    loading="lazy" decoding="async">
+                </button>
+                <span class="b-card__no">01</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>Running</h4>
+                <p>
+                  I run 5Ks around the campus two or three times a week. It does wonders for
+                  my mental health and my heart, and I enjoy having to push myself through
+                  the last bit of a run.
+                </p>
+              </div>
+            </article>
+
+            <article class="b-card b-card--making">
+              <div class="b-card__media">
+                <div class="b-strip">
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-postcard-01.webp"
+                    data-caption="Postcard — bird and leaves."
+                    aria-label="Enlarge image: Postcard — bird and leaves.">
+                    <img src="assets/media/activity/activity-postcard-01.webp" width="653" height="1400"
+                      alt="Hand-drawn postcard of a bird surrounded by leaves." loading="lazy" decoding="async">
+                  </button>
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-postcard-02.webp"
+                    data-caption="Postcard — flowers and a hand."
+                    aria-label="Enlarge image: Postcard — flowers and a hand.">
+                    <img src="assets/media/activity/activity-postcard-02.webp" width="653" height="1400"
+                      alt="Hand-drawn postcard of flowers and a hand." loading="lazy" decoding="async">
+                  </button>
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-postcard-03.webp"
+                    data-caption="Postcard — fox illustration."
+                    aria-label="Enlarge image: Postcard — fox illustration.">
+                    <img src="assets/media/activity/activity-postcard-03.webp" width="653" height="1400"
+                      alt="Hand-drawn postcard of a fox-like creature." loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <span class="b-card__no">02</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>Making things by hand</h4>
+                <p>
+                  I crochet a lot, and I send postcards to friends with drawings on the back.
+                  Until they are posted, they end up being pretty cool decorations in my room.
+                </p>
+              </div>
+            </article>
+
+            <article class="b-card b-card--print">
+              <div class="b-card__media">
+                <div class="b-strip b-strip--two">
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-print-01-done.webp"
+                    data-caption="Printmaking — first finished print."
+                    aria-label="Enlarge image: Printmaking — first finished print.">
+                    <img src="assets/media/activity/activity-print-01-done.webp" width="653" height="1400"
+                      alt="Black-and-white print of a skull." loading="lazy" decoding="async">
+                  </button>
+                  <button class="shot shot--video" type="button" data-lightbox data-type="video"
+                    data-src="assets/media/activity/activity-print-video-final.mp4"
+                    data-caption="Printmaking — pulling the first print."
+                    aria-label="Play video: Printmaking — pulling the first print.">
+                    <img src="assets/media/activity/activity-print-video-final-poster.webp" width="900" height="1290"
+                      alt="Video of the first print being pulled from the press." loading="lazy" decoding="async">
+                    <span class="shot__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                    </span>
+                  </button>
+                </div>
+                <span class="b-card__no">03</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>Printmaking</h4>
+                <p>Carving, ink, and the patient art of the reverse image.</p>
+              </div>
+            </article>
+
+            <article class="b-card b-card--vr">
+              <div class="b-card__media">
+                <button class="shot shot--video" type="button" data-lightbox data-type="video"
+                  data-src="assets/media/activity/activity-vr-yggdrasil.mp4"
+                  data-caption="Yggdrasil — a virtual world."
+                  aria-label="Play video: Yggdrasil — a virtual world.">
+                  <img src="assets/media/activity/activity-vr-yggdrasil-poster.webp" width="1000" height="562"
+                    alt="Video of the Yggdrasil virtual-reality world, glowing in magenta and blue."
+                    loading="lazy" decoding="async">
+                  <span class="shot__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                  </span>
+                </button>
+                <span class="b-card__no">04</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>VR design</h4>
+                <p>Building worlds in virtual space — one of them is called Yggdrasil.</p>
+              </div>
+            </article>
+
+            <article class="b-card b-card--crows">
+              <div class="b-card__media">
+                <button class="shot" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-crows.webp"
+                  data-caption="Feeding crows on campus."
+                  aria-label="Enlarge image: Feeding crows on campus.">
+                  <img src="assets/media/activity/activity-crows.webp" width="1050" height="1400"
+                    alt="Crows gathered on a campus path around some food." loading="lazy" decoding="async">
+                </button>
+                <span class="b-card__no">05</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>Feeding crows</h4>
+                <p>Trying to befriend the local crows. Good progress is being made with mutual recognition.</p>
+              </div>
+            </article>
+
+            <article class="b-card b-card--gaming">
+              <div class="b-card__media">
+                <div class="b-strip b-strip--two">
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-gaming-scorn.webp"
+                    data-caption="Scorn."
+                    aria-label="Enlarge image: Scorn.">
+                    <img src="assets/media/activity/activity-gaming-scorn.webp" width="1400" height="654"
+                      alt="Screenshot from the game Scorn." loading="lazy" decoding="async">
+                  </button>
+                  <button class="shot" type="button" data-lightbox data-type="image"
+                    data-src="assets/media/activity/activity-gaming-repo.webp"
+                    data-caption="Repo."
+                    aria-label="Enlarge image: Repo.">
+                    <img src="assets/media/activity/activity-gaming-repo.webp" width="1400" height="788"
+                      alt="Screenshot from the game Repo." loading="lazy" decoding="async">
+                  </button>
+                </div>
+                <span class="b-card__no">06</span>
+              </div>
+              <div class="b-card__copy">
+                <h4>Gaming</h4>
+                <p>Repo, Trailmakers, Space Marine 2, Rain World — and whatever else has a good idea in it.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============================================================
+         STUDY C — INDEX
+    ============================================================= -->
+    <article class="study study--c" id="study-c">
+      <header class="study-head wrap">
+        <div class="study-head__title">
+          <span class="study-tag">Study C</span>
+          <h2>Index</h2>
+        </div>
+        <p class="study-head__note">
+          The tightest read: thumbnail, name, note. Pictures stay close to their hobbies
+          without taking over, and the whole section fits into a single spread.
+        </p>
+      </header>
+
+      <div class="study-stage">
+        <div class="wrap">
+          <div class="c-layout">
+            <aside class="c-cover">
+              <div class="section-label">
+                <span class="section-label__num">04</span>
+                <span>About</span>
+              </div>
+              <h3 class="display">Outside the lab,<br><em>I collect hobbies.</em></h3>
+              <p class="section-intro">
+                Outside academics, I collect 'em like Pokémon. Here are a few of the ones that
+                have stuck.
+              </p>
+
+              <figure class="c-portrait">
+                <img src="assets/media/me-dog.webp" width="898" height="1200"
+                  alt="Samanth hugging a brown dog in a garden." loading="lazy" decoding="async">
+                <figcaption>Back home, with the best colleague.</figcaption>
+              </figure>
+            </aside>
+
+            <div class="c-list">
+              <article class="c-row">
+                <button class="c-thumb" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-running.webp"
+                  data-caption="Running — 4.91 km around IIT Bombay."
+                  aria-label="Enlarge image: Running — 4.91 km around IIT Bombay.">
+                  <img src="assets/media/activity/activity-running.webp" width="614" height="1200"
+                    alt="Running statistics: 4.91 kilometres around IIT Bombay at an average pace of 4:50 per kilometre."
+                    loading="lazy" decoding="async">
+                </button>
+                <div class="c-row__body">
+                  <h4>Running</h4>
+                  <p>
+                    I run 5Ks around the campus two or three times a week. It does wonders for
+                    my mental health and my heart, and I enjoy having to push myself through
+                    the last bit of a run.
+                  </p>
+                </div>
+                <span class="c-row__no">01</span>
+              </article>
+
+              <article class="c-row">
+                <button class="c-thumb" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-postcard-02.webp"
+                  data-caption="Postcard — flowers and a hand."
+                  aria-label="Enlarge image: Postcard — flowers and a hand.">
+                  <img src="assets/media/activity/activity-postcard-02.webp" width="653" height="1400"
+                    alt="Hand-drawn postcard of flowers and a hand." loading="lazy" decoding="async">
+                </button>
+                <div class="c-row__body">
+                  <h4>Making things by hand</h4>
+                  <p>
+                    I crochet a lot, and I send postcards to friends with drawings on the back.
+                    Until they are posted, they end up being pretty cool decorations in my room.
+                  </p>
+                </div>
+                <span class="c-row__no">02</span>
+              </article>
+
+              <article class="c-row">
+                <button class="c-thumb" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-print-02-final.webp"
+                  data-caption="Printmaking — final second print."
+                  aria-label="Enlarge image: Printmaking — final second print.">
+                  <img src="assets/media/activity/activity-print-02-final.webp" width="653" height="1400"
+                    alt="Final red, yellow and black print of a skull." loading="lazy" decoding="async">
+                </button>
+                <div class="c-row__body">
+                  <h4>Printmaking</h4>
+                  <p>Carving, ink, and the patient art of the reverse image.</p>
+                </div>
+                <span class="c-row__no">03</span>
+              </article>
+
+              <article class="c-row">
+                <button class="c-thumb c-thumb--video" type="button" data-lightbox data-type="video"
+                  data-src="assets/media/activity/activity-vr-yggdrasil.mp4"
+                  data-caption="Yggdrasil — a virtual world."
+                  aria-label="Play video: Yggdrasil — a virtual world.">
+                  <img src="assets/media/activity/activity-vr-yggdrasil-poster.webp" width="1000" height="562"
+                    alt="Video of the Yggdrasil virtual-reality world, glowing in magenta and blue."
+                    loading="lazy" decoding="async">
+                  <span class="c-thumb__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+                  </span>
+                </button>
+                <div class="c-row__body">
+                  <h4>VR design</h4>
+                  <p>Building worlds in virtual space — one of them is called Yggdrasil.</p>
+                </div>
+                <span class="c-row__no">04</span>
+              </article>
+
+              <article class="c-row">
+                <button class="c-thumb" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-crows.webp"
+                  data-caption="Feeding crows on campus."
+                  aria-label="Enlarge image: Feeding crows on campus.">
+                  <img src="assets/media/activity/activity-crows.webp" width="1050" height="1400"
+                    alt="Crows gathered on a campus path around some food." loading="lazy" decoding="async">
+                </button>
+                <div class="c-row__body">
+                  <h4>Feeding crows</h4>
+                  <p>Trying to befriend the local crows. Good progress is being made with mutual recognition.</p>
+                </div>
+                <span class="c-row__no">05</span>
+              </article>
+
+              <article class="c-row">
+                <button class="c-thumb" type="button" data-lightbox data-type="image"
+                  data-src="assets/media/activity/activity-gaming-scorn.webp"
+                  data-caption="Scorn."
+                  aria-label="Enlarge image: Scorn.">
+                  <img src="assets/media/activity/activity-gaming-scorn.webp" width="1400" height="654"
+                    alt="Screenshot from the game Scorn." loading="lazy" decoding="async">
+                </button>
+                <div class="c-row__body">
+                  <h4>Gaming</h4>
+                  <p>Repo, Trailmakers, Space Marine 2, Rain World — and whatever else has a good idea in it.</p>
+                </div>
+                <span class="c-row__no">06</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <section class="lab-outro">
+      <div class="wrap">
+        <p class="kicker">Current direction</p>
+        <h2><em>A</em>, with moving pictures.</h2>
+        <p>
+          The cycling decks are the direction. B and C stay below for comparison; if a detail
+          from either should move across, tell me which and I will fold it into the real About
+          section.
+        </p>
+        <div class="lab-outro__links">
+          <a class="button button--ghost" href="#study-a">Back to A</a>
+          <a class="text-link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lightbox-caption">
+    <div class="lightbox__inner">
+      <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close enlarged media">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div class="lightbox__media" data-lightbox-media></div>
+      <p class="lightbox__caption" id="lightbox-caption" data-lightbox-caption></p>
+    </div>
+  </dialog>
+
+  <script src="main.js"></script>
+  <script src="about-decks.js"></script>
+</body>
+</html>
