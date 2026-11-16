@@ -12,6 +12,7 @@
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const supportsHover = window.matchMedia('(hover: hover)').matches;
+  const isCompact = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 760;
   const pad = (value) => String(value).padStart(2, '0');
   const decks = [];
 
@@ -177,6 +178,9 @@
   function scheduleAboutWarmup() {
     if (!about) return;
     const run = () => {
+      // Phones skip the idle prefetch: wait until the section is actually near,
+      // so background image traffic cannot compete with scrolling.
+      if (isCompact) return;
       warmAboutImages();
       window.setTimeout(warmAboutVideoMetadata, 600);
     };

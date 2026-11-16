@@ -166,33 +166,45 @@ const fov = 75;
 const near = 0.1;
 const far = 5;
 
-const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, near, far);
-camera.position.z = 3;
+let camera = null;
+let scene = null;
+let renderer = null;
+let material = null;
+let controls = null;
+let initialized = false;
 
-const scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({
-    canvas,
-    antialias: true,
-    powerPreference: "high-performance"
-});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCompact ? 1.5 : 2));
+function init() {
+    if (initialized) return;
+    initialized = true;
 
-// The original used 200 subdivisions, producing roughly 800k triangles for a
-// sphere that is only a few hundred pixels wide on a phone. 96 keeps the
-// displaced silhouette clean while cutting the triangle count by over 4x.
-const detail = 96;
-const geo = new THREE.IcosahedronGeometry(1.0, detail);
-const material = new THREE.RawShaderMaterial({
-    vertexShader: vertexShader,
-    fragmentShader: fragmentShader
-})
-material.uniforms.uTime = {value: 0}
-const obj = new THREE.Mesh(geo, material)
-scene.add(obj)
+    camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, near, far);
+    camera.position.z = 3;
 
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = false;
-controls.update();
+    scene = new THREE.Scene();
+    renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        powerPreference: "high-performance"
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCompact ? 1.5 : 2));
+
+    // The original used 200 subdivisions, producing roughly 800k triangles for a
+    // sphere that is only a few hundred pixels wide on a phone. 96 keeps the
+    // displaced silhouette clean while cutting the triangle count by over 4x.
+    const geo = new THREE.IcosahedronGeometry(1.0, 96);
+    material = new THREE.RawShaderMaterial({
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader
+    })
+    material.uniforms.uTime = {value: 0}
+    scene.add(new THREE.Mesh(geo, material))
+
+    controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = false;
+    controls.update();
+
+    resize();
+}
 
 const frameInterval = 1000 / (isCompact ? 30 : 60);
 let running = false;
@@ -201,7 +213,7 @@ let lastFrame = 0;
 
 function tick(now) {
     rafId = 0;
-    if (!running) return;
+    if (!running || !renderer) return;
     if (!lastFrame || now - lastFrame >= frameInterval) {
         lastFrame = now;
         material.uniforms.uTime.value = now / 2.0;
@@ -211,6 +223,7 @@ function tick(now) {
 }
 
 function start() {
+    if (!initialized) init();
     if (rafId) return;
     running = true;
     lastFrame = 0;
@@ -224,6 +237,7 @@ function stop() {
 }
 
 function resize() {
+    if (!renderer || !camera) return;
     const width = window.innerWidth;
     const height = window.innerHeight;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isCompact ? 1.5 : 2));
@@ -243,8 +257,6 @@ window.addEventListener("message", (event) => {
     if (event.data.visible) start();
     else stop();
 });
-
-resize();
 
 if (window.parent !== window) {
     // The parent pauses the shader while the card is off-screen.

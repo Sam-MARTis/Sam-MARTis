@@ -2876,6 +2876,7 @@ main,
   position: relative;
   aspect-ratio: 5 / 6;
   overflow: hidden;
+  touch-action: pan-y pinch-zoom;
   border: 1px solid var(--line-strong);
   border-radius: 10px;
   background: var(--surface);
@@ -3356,10 +3357,39 @@ main,
   }
 }
 
-/* Keep the fixed header cheap to composite while scrolling on phones. */
-@media (max-width: 700px) {
+/* Phone performance mode: drop fixed-canvas, blur and blend layers that
+   force the compositor to repaint the whole viewport while scrolling. */
+@media (max-width: 760px), (pointer: coarse) {
+  #boids,
+  .grain {
+    display: none;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+
   .site-header.is-scrolled {
-    -webkit-backdrop-filter: blur(8px) saturate(1.08);
-    backdrop-filter: blur(8px) saturate(1.08);
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .media__tag,
+  .media__expand,
+  .media__zoom,
+  .a-deck__play,
+  .lightbox::backdrop {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .js .reveal {
+    transform: none;
+    transition: opacity 0.35s ease;
+  }
+
+  .a-deck__stage {
+    box-shadow: 0 16px 30px -30px rgba(14, 22, 17, 0.5);
   }
 }

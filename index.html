@@ -42,10 +42,9 @@
         root.dataset.theme = theme;
       } catch (e) { root.dataset.theme = 'light'; }
       try {
+        // Keep reduced-motion for CSS only; do not globally pause the site.
         var motion = localStorage.getItem('motion');
-        if (motion) root.dataset.motion = motion;
-        else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) root.dataset.motion = 'paused';
-        else root.dataset.motion = 'running';
+        root.dataset.motion = motion || 'running';
       } catch (e) { root.dataset.motion = 'running'; }
     })();
   </script>

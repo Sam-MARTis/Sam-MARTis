@@ -22,6 +22,14 @@
   const canvas = document.getElementById('boids');
   if (!canvas) return;
 
+  // Fixed full-screen canvases are disproportionately expensive on phones.
+  // Keep the ambient flock on larger screens only.
+  const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 760;
+  if (isMobile) {
+    canvas.remove();
+    return;
+  }
+
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
@@ -36,9 +44,6 @@
   const POINTER_RADIUS = 145;
 
   const root = document.documentElement;
-  const isCompact = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 700;
-  const FRAME_INTERVAL = isCompact ? 1000 / 30 : 0;
-  let lastPaint = 0;
   let boids = [];
   let width = 0;
   let height = 0;
@@ -301,10 +306,6 @@
       return;
     }
 
-    frameId = window.requestAnimationFrame(frame);
-    if (FRAME_INTERVAL && now - lastPaint < FRAME_INTERVAL) return;
-    lastPaint = now;
-
     if (!lastTime) lastTime = now;
     let dt = (now - lastTime) / 1000;
     lastTime = now;
@@ -315,6 +316,7 @@
       draw();
     }
 
+    frameId = window.requestAnimationFrame(frame);
   }
 
   function start() {
@@ -325,7 +327,6 @@
       return;
     }
     lastTime = 0;
-    lastPaint = 0;
     frameId = window.requestAnimationFrame(frame);
   }
 
