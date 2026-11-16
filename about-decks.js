@@ -150,17 +150,9 @@
     video.load();
   }
 
-  function warmFirstDeckVideos() {
+  function warmAboutVideos() {
     if (!about || !networkAllowsVideo()) return;
-    const seen = new Set();
-    about.querySelectorAll('[data-deck]').forEach((deck) => {
-      const slide = deck.querySelector('[data-deck-slide][data-type="video"]');
-      const src = slide && slide.dataset.src;
-      if (src && !seen.has(src)) {
-        seen.add(src);
-        preloadAboutVideo(src);
-      }
-    });
+    aboutVideoSources().forEach(preloadAboutVideo);
   }
 
   function warmOnIntent() {
@@ -202,14 +194,14 @@
       const videoObserver = new IntersectionObserver(
         (entries) => {
           if (!entries.some((entry) => entry.isIntersecting)) return;
-          warmFirstDeckVideos();
+          warmAboutVideos();
           videoObserver.disconnect();
         },
         { rootMargin: '400px 0px' }
       );
       videoObserver.observe(about);
     } else {
-      warmFirstDeckVideos();
+      warmAboutVideos();
     }
   }
 

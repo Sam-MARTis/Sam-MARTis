@@ -21,6 +21,41 @@
   let motionPaused = root.dataset.motion === 'paused';
   let lightboxOpen = false;
 
+  const isCompact = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 760;
+  const mobileVideoFiles = new Set([
+    'attractors.mp4',
+    'fractal.mp4',
+    'ising.mp4',
+    'gravity-cpp.mp4',
+    'lattice-boltzmann.mp4',
+    'activity-print-video-carving.mp4',
+    'activity-print-video-inking-01.mp4',
+    'activity-print-video-inking-02.mp4',
+    'activity-vr-yggdrasil.mp4'
+  ]);
+
+  function optimizedVideoSrc(src) {
+    if (!src || !isCompact) return src;
+    const file = src.split('/').pop();
+    return mobileVideoFiles.has(file) ? 'assets/media/mobile/' + file : src;
+  }
+
+  // Point lightboxes at the smaller encodes, and remember the mobile source for
+  // ambient videos. The <video> source is swapped in playVideo so the browser
+  // never commits to the desktop file during parsing.
+  if (isCompact) {
+    $$('video[data-ambient]').forEach((video) => {
+      const source = $('source', video);
+      const src = source && source.getAttribute('src');
+      const mobileSrc = optimizedVideoSrc(src);
+      if (mobileSrc && mobileSrc !== src) video.dataset.mobileSrc = mobileSrc;
+    });
+    $$('[data-type="video"][data-src]').forEach((trigger) => {
+      const src = trigger.getAttribute('data-src');
+      if (src) trigger.setAttribute('data-src', optimizedVideoSrc(src));
+    });
+  }
+
   /* ------------------------------------------------------------
      Theme
      ------------------------------------------------------------ */
@@ -70,6 +105,11 @@
 
   function playVideo(video) {
     if (!video || motionPaused || document.hidden || lightboxOpen) return;
+    const mobileSrc = video.dataset.mobileSrc;
+    if (mobileSrc && video.getAttribute('src') !== mobileSrc) {
+      video.src = mobileSrc;
+      video.load();
+    }
     const promise = video.play();
     if (promise && typeof promise.catch === 'function') promise.catch(() => {});
   }
@@ -105,6 +145,69 @@
     if (document.hidden) pauseAllVideos();
     else playVisibleVideos();
   });
+
+  /* ------------------------------------------------------------
+     Background video warm-up
+     ------------------------------------------------------------ */
+
+  function preloadAmbientVideos() {
+    const connection = navigator.connection;
+    if (connection && (connection.saveData || /(^|-)2g$/.test(connection.effectiveType || ''))) return;
+
+    const sources = [];
+    const seen = new Set();
+    ambientVideos.forEach((video) => {
+      if (video.preload === 'auto') return;
+      const source = $('source', video);
+      const src = video.dataset.mobileSrc || (source && source.getAttribute('src'));
+      if (src && !seen.has(src)) {
+        seen.add(src);
+        sources.push(src);
+      }
+    });
+
+    let cursor = 0;
+    let active = 0;
+    const parallel = isCompact ? 1 : 2;
+    const next = () => {
+      while (active < parallel && cursor < sources.length) {
+        const src = sources[cursor];
+        cursor += 1;
+        active += 1;
+
+        const video = document.createElement('video');
+        video.preload = 'auto';
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute('aria-hidden', 'true');
+        video.tabIndex = -1;
+        video.src = src;
+        video.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;left:-9999px;';
+
+        let finished = false;
+        let timer = 0;
+        const done = () => {
+          if (finished) return;
+          finished = true;
+          window.clearTimeout(timer);
+          video.remove();
+          active -= 1;
+          next();
+        };
+
+        timer = window.setTimeout(done, 30000);
+        video.addEventListener('canplaythrough', done, { once: true });
+        video.addEventListener('error', done, { once: true });
+        document.body.appendChild(video);
+        video.load();
+      }
+    };
+
+    next();
+  }
+
+  if (document.readyState === 'complete') preloadAmbientVideos();
+  else window.addEventListener('load', preloadAmbientVideos, { once: true });
 
   /* ------------------------------------------------------------
      Shader embed
